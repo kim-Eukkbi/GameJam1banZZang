@@ -6,18 +6,27 @@ using UnityEngine.UI;
 
 public class TextTimerViewer : MonoBehaviour
 {
-    private Text tiemrText;
+    private Text timer;
 
     void Start()
     {
-        tiemrText = GetComponent<Text>();
+        timer = GetComponent<Text>();
 
         StartCoroutine(UpdateTimerRoutine());
     }
 
     public void UpdateTimer(int time)
     {
-        tiemrText.text = time.ToString();
+        if (GameManager.instance.time <= 0)
+        {
+            GameManager.instance.GameOver();
+        }
+        else if (GameManager.instance.time <= 10)
+        {
+            timer.color = Color.red;
+        }
+
+        timer.text = time.ToString();
     }
 
     private IEnumerator UpdateTimerRoutine()
@@ -27,7 +36,7 @@ public class TextTimerViewer : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             GameManager.instance.time--;
-            tiemrText.text = GameManager.instance.time.ToString();
+            UpdateTimer(GameManager.instance.time);
         }
     }
 }
