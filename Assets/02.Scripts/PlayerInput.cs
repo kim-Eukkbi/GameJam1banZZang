@@ -40,24 +40,9 @@ public class PlayerInput : MonoBehaviour
             playerTrail.endColor = colorMat[colorindex].color;*/
         }
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            playerRigidbody.AddForce(Vector3.down * 10, ForceMode.VelocityChange);
-        }
 
-        //이거 핵임 쓰면 편함
-      /*  if(Input.GetKeyDown(KeyCode.E))
-        {
-            playerConstantForce.force = new Vector3(0, -10000, 0);
-        }
-
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            playerConstantForce.force = new Vector3(0, 0, 0);
-        }*/
-
-        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6);
-        if(Physics.Raycast(transform.position,Vector3.down,out hit,6))
+        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 10 + playerRigidbody.velocity.y / 100);
+        if(Physics.Raycast(transform.position,Vector3.down,out hit, 10 + playerRigidbody.velocity.y / 100))
         {
             if(hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
             {
