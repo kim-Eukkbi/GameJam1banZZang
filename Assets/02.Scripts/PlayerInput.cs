@@ -63,6 +63,8 @@ public class PlayerInput : MonoBehaviour
                 print("Ãæµ¹");
                 Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
                 StartCoroutine(DestroyList(currPlate));
+
+                currPlate.SetOff();
             }
             else
             {
