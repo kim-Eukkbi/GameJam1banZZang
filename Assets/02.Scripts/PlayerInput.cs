@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using DG.Tweening;
 using System.Linq;
+using UnityEngineInternal;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -73,15 +74,18 @@ public class PlayerInput : MonoBehaviour
         Debug.DrawRay(transform.position, Vector3.down, Color.blue, 15 + playerRigidbody.velocity.y / 100);
         if(Physics.Raycast(transform.position,Vector3.down,out hit, 15 + playerRigidbody.velocity.y / 100))
         {
-            if(hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
+            if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
             {
                 //print("Ãæµ¹");
                 Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
+                GameManager.DestroyPlate();
+                GameManager.instance.canMiss = true;
                 StartCoroutine(DestroyList(currPlate));
             }
             else
             {
-
+                GameManager.instance.MissPlate();
+                GameManager.instance.canMiss = false;
             }
         }
     }
