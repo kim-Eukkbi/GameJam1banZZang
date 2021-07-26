@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -22,7 +23,6 @@ public class PlayerInput : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerConstantForce = GetComponent<ConstantForce>();
         playerMesh.material = colorMat[(int)playerType];
-        
     }
 
     void Update()
@@ -62,21 +62,31 @@ public class PlayerInput : MonoBehaviour
             {
                 print("Ãæµ¹");
                 Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
-                for (int i =0;i < currPlate.pizzas.Count;i++)
-                {
-                    Destroy(currPlate.pizzas[i].gameObject);
-                }
-
-                for (int i = 0; i < currPlate.pizzas.Count; i++)
-                {
-                    currPlate.pizzas.RemoveAt(i);
-                }
-
+                StartCoroutine(DestroyList(currPlate));
             }
             else
             {
 
             }
+        }
+    }
+
+    private IEnumerator DestroyList(Plate plate)
+    {
+        for (int i = 0; i < plate.pizzas.Count; i++)
+        {
+            Rigidbody rigidbody = plate.pizzas[i].transform.GetComponent<Rigidbody>();
+            rigidbody.isKinematic = false;
+            //rigidbody.AddForce(Vector3.back * 10, ForceMode.Impulse);
+            rigidbody.AddExplosionForce(500, new Vector3(0, 0, 0), 10,10);
+            Destroy(plate.pizzas[i].gameObject, 1f);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        for (int i = 0; i < plate.pizzas.Count; i++)
+        {
+            plate.pizzas.RemoveAt(i);
         }
     }
 }
