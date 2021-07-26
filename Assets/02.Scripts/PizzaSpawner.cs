@@ -12,7 +12,7 @@ public class PizzaSpawner : MonoBehaviour
 
     private void Start()
     {
-        PoolManager.CreatPool<Plate>(plate, gameObject.transform, 3);
+        PoolManager.CreatPool<Plate>(plate, gameObject.transform, 5);
 
         lastPlate = PoolManager.GetItem<Plate>();
 
