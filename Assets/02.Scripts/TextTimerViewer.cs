@@ -7,22 +7,27 @@ using UnityEngine.UI;
 public class TextTimerViewer : MonoBehaviour
 {
     private Text tiemrText;
-    private int time = 60;
+
     void Start()
     {
         tiemrText = GetComponent<Text>();
 
-        StartCoroutine(UpdateTimer());
+        StartCoroutine(UpdateTimerRoutine());
     }
 
-    private IEnumerator UpdateTimer()
+    public void UpdateTimer(int time)
     {
-        while (time > 0)
+        tiemrText.text = time.ToString();
+    }
+
+    private IEnumerator UpdateTimerRoutine()
+    {
+        while (GameManager.instance.time > 0)
         {
             yield return new WaitForSeconds(1f);
 
-            time--;
-            tiemrText.text = time.ToString();
+            GameManager.instance.time--;
+            tiemrText.text = GameManager.instance.time.ToString();
         }
     }
 }
