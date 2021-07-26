@@ -79,16 +79,14 @@ public class PlayerInput : MonoBehaviour
             rigidbody.isKinematic = false;
             //rigidbody.AddForce(Vector3.back * 10, ForceMode.Impulse);
             rigidbody.AddExplosionForce(500, new Vector3(0, 0, 0), 10,10);
-            //Destroy(plate.pizzas[i].gameObject, 1f);
+            Destroy(plate.pizzas[i].gameObject, 1f);
         }
 
-        yield return new WaitForSeconds(2f);
-        plate.SetOff();
-        /* for (int i = 0; i < plate.pizzas.Count; i++)
-         {
-             //plate.pizzas.RemoveAt(i);
-         }
- */
+        yield return new WaitForSeconds(0.5f);
 
+         for (int i = 0; i < plate.pizzas.Count; i++)
+         {
+             plate.pizzas.RemoveAt(i);
+         }
     }
 }
