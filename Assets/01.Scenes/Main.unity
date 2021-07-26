@@ -169,7 +169,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75960712}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 25f877c69514eef48a926a34d1ecc14a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -378,7 +378,7 @@ ConstantForce:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75960712}
   m_Enabled: 1
-  m_Force: {x: 0, y: 0, z: 0}
+  m_Force: {x: 0, y: -154, z: 0}
   m_RelativeForce: {x: 0, y: 0, z: 0}
   m_Torque: {x: 0, y: 0, z: 0}
   m_RelativeTorque: {x: 0, y: 0, z: 0}

@@ -74,27 +74,17 @@ public class PlayerInput : MonoBehaviour
 
     private IEnumerator DestroyList(Plate plate)
     {
-        List<Collider> col = Physics.OverlapSphere(new Vector3(0, 0, 0), 10).ToList();
-        print(col.Count);
-        /*foreach (Collider hit in col)
-        {
-            Rigidbody hitRig = hit.gameObject.GetComponent<Rigidbody>();
-            if(hitRig != null)
-            {
-                print("Æø*8");
-                hitRig.AddExplosionForce(500, new Vector3(0, 0, 0), 10, 0, ForceMode.Impulse);
-            }
-        }*/
 
         for (int i = 0; i < plate.pizzas.Count; i++)
         {
             Rigidbody rigidbody = plate.pizzas[i].transform.GetComponent<Rigidbody>();
             rigidbody.isKinematic = false;
-           // plate.pizzas[i].GetComponent<Pizza>().ExplosionPizza();
+            rigidbody.useGravity = true;
+            plate.pizzas[i].gameObject.layer = 7;
+            rigidbody.AddExplosionForce(50, transform.position, 10, 10, ForceMode.Impulse);
             Destroy(plate.pizzas[i].gameObject, 1f);
         }
 
-        col.Clear();
 
         yield return new WaitForSeconds(1f);
 
