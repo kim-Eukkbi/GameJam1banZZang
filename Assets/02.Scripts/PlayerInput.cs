@@ -41,8 +41,8 @@ public class PlayerInput : MonoBehaviour
         }
 
 
-        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 10 + playerRigidbody.velocity.y / 100);
-        if(Physics.Raycast(transform.position,Vector3.down,out hit, 10 + playerRigidbody.velocity.y / 100))
+        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6 + playerRigidbody.velocity.y / 100);
+        if(Physics.Raycast(transform.position,Vector3.down,out hit, 6 + playerRigidbody.velocity.y / 100))
         {
             if(hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
             {
@@ -66,7 +66,7 @@ public class PlayerInput : MonoBehaviour
             rigidbody.isKinematic = false;
             rigidbody.useGravity = true;
             plate.pizzas[i].gameObject.layer = 7;
-            rigidbody.AddExplosionForce(50, transform.position, 10, 10, ForceMode.Impulse);
+            rigidbody.AddExplosionForce(100, transform.position, 10, 10, ForceMode.Impulse);
             Destroy(plate.pizzas[i].gameObject, 1f);
         }
 
