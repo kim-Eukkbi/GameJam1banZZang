@@ -28,4 +28,6 @@ public class PlatePattern
             1, 1, 1, 1, 1, 1, 1, 1
         }
     };
+
+    public int[] rotatePattern = new int[] { 0, 1, 1, 0, 1, 0, 0 };
 }
