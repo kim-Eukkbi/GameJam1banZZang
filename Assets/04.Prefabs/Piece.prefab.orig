@@ -95,7 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb59f2bd9c2f1c4db2ea7978930436b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+<<<<<<< HEAD
+  type: 0
 --- !u!64 &-4770054582013298572
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -110,3 +111,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 3941715523697911101, guid: 6f037332464bcff4c82e54a5bba34c30, type: 3}
+=======
+  type: 1
+>>>>>>> origin/main
