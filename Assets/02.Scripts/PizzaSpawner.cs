@@ -6,8 +6,7 @@ public class PizzaSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject plate;
-    [SerializeField]
-    private Plate lastPlate;
+    public List<Plate> plates = new List<Plate>();
     private const int interval = 60;
 
     private void Start()
@@ -26,7 +25,7 @@ public class PizzaSpawner : MonoBehaviour
             temp.Setup();
 
             temp.transform.position = new Vector3(transform.position.x,transform.position.y - interval * i,transform.position.z);
-            lastPlate = temp;
+            plates.Add(temp);
         }
     }
 }

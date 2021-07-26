@@ -6,7 +6,7 @@ using DG.Tweening;
 using System.Linq;
 using UnityEngineInternal;
 
-public class PlayerInput : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private MeshRenderer playerMesh;
     private TrailRenderer playerTrail;
@@ -73,18 +73,21 @@ public class PlayerInput : MonoBehaviour
         Debug.DrawRay(transform.position, Vector3.down, Color.blue, 10 + playerRigidbody.velocity.y / 100);
         if(Physics.Raycast(transform.position,Vector3.down,out hit, 10 + playerRigidbody.velocity.y / 100))
         {
-            if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
+            if(hit.transform.GetComponent<Pizza>() != null)
             {
-                //print("충돌");
-                Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
-                GameManager.DestroyPlate();
-                GameManager.instance.canMiss = true;
-                StartCoroutine(DestroyList(currPlate));
-            }
-            else
-            {
-                GameManager.instance.MissPlate();
-                GameManager.instance.canMiss = false;
+                if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
+                {
+                    //print("충돌");
+                    Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
+                    GameManager.DestroyPlate();
+                    GameManager.instance.canMiss = true;
+                    StartCoroutine(DestroyList(currPlate));
+                }
+                else
+                {
+                    GameManager.instance.MissPlate();
+                    GameManager.instance.canMiss = false;
+                }
             }
         }
     }
