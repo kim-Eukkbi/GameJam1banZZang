@@ -45,7 +45,11 @@ public class Player : MonoBehaviour
             speedTMP.transform.DOShakePosition(1, 5).OnComplete(() => isShaking = false);
         }
         speedTMP.text = string.Format("{0:0}\n<size=50%>km/h</size>", Valocity);
-        //speedTMP.
+        float colorR = Valocity <= 0 ? 0.17f : Valocity >= 120 ? 1 : Valocity /100;
+        float colorG = Valocity <= 0 ? 0.19f : Valocity >= 120 ? 1 : Valocity /100;
+        float colorB = Valocity <= 0 ? 0.43f : Valocity >= 120 ? 1 : Valocity /100;
+        speedTMP.color = new Color(colorR, colorG, colorB);
+        //이거 내일 다시 수정 해야해
         speedTMP.fontSize = Valocity > 120 ? 500 : Valocity * 2f + 300;
         speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
     
