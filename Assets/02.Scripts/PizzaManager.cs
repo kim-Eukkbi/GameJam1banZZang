@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PizzaType { DEFAULT, RED, GREEN }
+public enum PizzaType { RED, GREEN }
 
 public class PizzaManager : MonoBehaviour
 {
     public static PizzaManager instance;
 
     public Material[] materials;
-    public PizzaType[] types = new PizzaType[] { PizzaType.DEFAULT, PizzaType.GREEN, PizzaType.RED };
+    public PizzaType[] types = new PizzaType[] { PizzaType.RED, PizzaType.GREEN };
+    public PlatePattern platePattern = new PlatePattern();
 
     private void Awake()
     {

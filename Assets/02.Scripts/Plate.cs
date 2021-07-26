@@ -11,29 +11,33 @@ public class Plate : MonoBehaviour
 
     private const int each = 45;
 
-    private void Start()
+    public void Setup()
     {
-        PoolManager.CreatPool<Pizza>(pizza, gameObject.transform, 8);
-
         for (int i = 0; i < 8; i++)
         {
-            pizzas.Add(PoolManager.GetItem<Pizza>());
+            Pizza temp = Instantiate(pizza, transform).GetComponent<Pizza>();
+            pizzas.Add(temp);
         }
+
+        int randomNum = Random.Range(0, 7);
 
         for (int i = 0; i < pizzas.Count; i++)
         {
             MeshRenderer temp = pizzas[i].GetComponent<MeshRenderer>();
 
-            int randomNum = Random.Range(0, 3);
+            temp.material = PizzaManager.instance.materials[PizzaManager.instance.platePattern.patterns[randomNum, i]];
+            pizzas[i].Type = (PizzaType)PizzaManager.instance.platePattern.patterns[randomNum, i];
+        }
 
-            temp.material = PizzaManager.instance.materials[randomNum];
-            pizzas[i].Type = PizzaManager.instance.types[randomNum];
+        for (int i = 0; i < pizzas.Count; i++)
+        {
+            pizzas[i].transform.position = transform.position;
         }
 
         for (int i = 0; i < pizzas.Count; i++)
         {
             pizzas[i].transform.rotation = Quaternion.Euler(pizzas[i].transform.rotation.x
-                                                          , pizzas[i].transform.rotation.y + each * i, 
+                                                          , pizzas[i].transform.rotation.y + each * i,
                                                             pizzas[i].transform.rotation.z);
         }
     }
