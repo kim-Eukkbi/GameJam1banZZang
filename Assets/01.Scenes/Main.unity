@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 40b58979fd5c35d4da248a0f3d2e9c22, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 40b58979fd5c35d4da248a0f3d2e9c22,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -883,7 +884,11 @@ MonoBehaviour:
   textTimerViewer: {fileID: 537476705}
   pizzaSpawner: {fileID: 1960031615}
   textAnimTimerText: {fileID: 1954482118}
-  gameOverFloor: {fileID: 4846742967033033636, guid: 18d0baa0c3f51264b8ef0727595b2a1e, type: 3}
+  gameOverFloor: {fileID: 4846742967033033636, guid: 18d0baa0c3f51264b8ef0727595b2a1e,
+    type: 3}
+  fragments: {fileID: 7529436606119599646, guid: 3ee05c066dada4546bf0ff6021e74302,
+    type: 3}
+  minusTime: 2
   time: 60
   destroyedPlate: 0
   canMiss: 1
@@ -1119,7 +1124,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741288891}
-  m_LocalRotation: {x: 0.18660511, y: -0.000000016904155, z: 0.0000000032107992, w: 0.98243505}
+  m_LocalRotation: {x: 0.18660511, y: 0.000000016904147, z: -0.000000003210798, w: 0.98243505}
   m_LocalPosition: {x: 0, y: 101, z: -95.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1304,8 +1309,7 @@ Transform:
   m_LocalRotation: {x: 0.19110651, y: 0, z: 0, w: 0.9815693}
   m_LocalPosition: {x: 0, y: 5.12, z: -13.270001}
   m_LocalScale: {x: 0.2, y: 0.20000003, z: 0.2}
-  m_Children:
-  - {fileID: 1594394972}
+  m_Children: [{fileID: 1594394972}]
   m_Father: {fileID: 75960717}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 23.509, y: 0, z: 0}
@@ -1358,8 +1362,10 @@ MonoBehaviour:
   _shutterAngle: 360
   _sampleCount: 60
   _frameBlending: 0.6
-  _reconstructionShader: {fileID: 4800000, guid: 60701d53f4c638048b5e49c197d08b77, type: 3}
-  _frameBlendingShader: {fileID: 4800000, guid: 95caa7c3844725840aec8dad64ac258e, type: 3}
+  _reconstructionShader: {fileID: 4800000, guid: 60701d53f4c638048b5e49c197d08b77,
+    type: 3}
+  _frameBlendingShader: {fileID: 4800000, guid: 95caa7c3844725840aec8dad64ac258e,
+    type: 3}
 --- !u!320 &963194231
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -1564,7 +1570,8 @@ MonoBehaviour:
   m_text: 200
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
-  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
+  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1982,7 +1989,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1772106986}
-  m_LocalRotation: {x: -0.07088894, y: -0.000000016902995, z: -0.0000000012012574, w: 0.99748427}
+  m_LocalRotation: {x: -0.07088894, y: -0.000000016902995, z: -0.0000000012012574,
+    w: 0.99748427}
   m_LocalPosition: {x: 0, y: 68.4, z: -28.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
