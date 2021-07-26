@@ -8,6 +8,9 @@ public class Plate : MonoBehaviour
     [SerializeField]
     private GameObject pizza;
     private List<Pizza> pizzas = new List<Pizza>();
+    private RotateDir rotateDir;
+    [SerializeField]
+    private float rotateSpeed = 1f;
 
     private const int each = 45;
 
@@ -21,11 +24,14 @@ public class Plate : MonoBehaviour
 
         int randomNum = Random.Range(0, 7);
 
+        rotateDir = (RotateDir)PizzaManager.instance.platePattern.rotatePattern[randomNum];
+
         for (int i = 0; i < pizzas.Count; i++)
         {
             MeshRenderer temp = pizzas[i].GetComponent<MeshRenderer>();
 
             pizzas[i].Type = (PizzaType)PizzaManager.instance.platePattern.patterns[randomNum, i];
+
             temp.material = PizzaManager.instance.materials[PizzaManager.instance.platePattern.patterns[randomNum, i]];
         }
 
@@ -39,6 +45,18 @@ public class Plate : MonoBehaviour
             pizzas[i].transform.rotation = Quaternion.Euler(pizzas[i].transform.rotation.x
                                                           , pizzas[i].transform.rotation.y + each * i,
                                                             pizzas[i].transform.rotation.z);
+        }
+    }
+
+    private void Update()
+    {
+        if(rotateDir == RotateDir.LEFT)
+        {
+            transform.Rotate(new Vector3(0, -rotateSpeed * Time.deltaTime, 0));
+        }
+        else if (rotateDir == RotateDir.RIGHT)
+        {
+            transform.Rotate(new Vector3(0, rotateSpeed * Time.deltaTime, 0));
         }
     }
 }

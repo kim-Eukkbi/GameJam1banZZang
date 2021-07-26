@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pizza: {fileID: 5349243230708091779, guid: 225d5378266d1804fb7ae1aa1ca7eff9, type: 3}
+  rotateSpeed: 50

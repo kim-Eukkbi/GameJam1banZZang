@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum PizzaType { RED, GREEN }
+public enum RotateDir { LEFT, RIGHT }
 
 public class PizzaManager : MonoBehaviour
 {
