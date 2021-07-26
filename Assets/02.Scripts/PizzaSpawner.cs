@@ -8,7 +8,7 @@ public class PizzaSpawner : MonoBehaviour
     private GameObject plate;
     [SerializeField]
     private Plate lastPlate;
-    private const int interval = 40;
+    private const int interval = 60;
 
     private void Start()
     {

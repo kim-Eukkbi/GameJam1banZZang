@@ -56,8 +56,8 @@ public class PlayerInput : MonoBehaviour
             playerConstantForce.force = new Vector3(0, 0, 0);
         }*/
 
-        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 5);
-        if(Physics.Raycast(transform.position,Vector3.down,out hit,5))
+        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6);
+        if(Physics.Raycast(transform.position,Vector3.down,out hit,6))
         {
             if(hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
             {
