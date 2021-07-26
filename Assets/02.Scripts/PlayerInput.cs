@@ -15,7 +15,6 @@ public class PlayerInput : MonoBehaviour
 
     public TextMeshPro speedTMP;
     public List<Material> colorMat;
-    private int colorindex;
     private RaycastHit hit;
     private PizzaType playerType;
     private Vector3 tMPPos;
@@ -71,8 +70,8 @@ public class PlayerInput : MonoBehaviour
         }
 
 
-        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 15 + playerRigidbody.velocity.y / 100);
-        if(Physics.Raycast(transform.position,Vector3.down,out hit, 15 + playerRigidbody.velocity.y / 100))
+        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 10 + playerRigidbody.velocity.y / 100);
+        if(Physics.Raycast(transform.position,Vector3.down,out hit, 10 + playerRigidbody.velocity.y / 100))
         {
             if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
             {
