@@ -77,8 +77,18 @@ public class PlayerInput : MonoBehaviour
         {
             Rigidbody rigidbody = plate.pizzas[i].transform.GetComponent<Rigidbody>();
             rigidbody.isKinematic = false;
-            //rigidbody.AddForce(Vector3.back * 10, ForceMode.Impulse);
-            rigidbody.AddExplosionForce(500, new Vector3(0, 0, 0), 10,10);
+
+            plate.pizzas[i].transform.rotation = Quaternion.identity;
+
+            Vector3 dirVec = new Vector3(Mathf.Cos(Mathf.PI * 2 * i / plate.pizzas.Count)
+                                        , Mathf.Sin(Mathf.PI * 2 * i / plate.pizzas.Count)
+                                        , Mathf.Tan(Mathf.PI * 2 * i / plate.pizzas.Count));
+
+            Vector3 rotVec = Vector3.forward * 360 * i / plate.pizzas.Count + Vector3.forward * 90;
+            plate.pizzas[i].transform.Rotate(rotVec);
+
+            rigidbody.AddForce(dirVec.normalized * 10, ForceMode.Impulse);
+            //rigidbody.AddExplosionForce(500, new Vector3(0, 0, 0), 10);
             //Destroy(plate.pizzas[i].gameObject, 1f);
         }
 
