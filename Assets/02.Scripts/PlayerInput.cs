@@ -7,6 +7,7 @@ public class PlayerInput : MonoBehaviour
     private MeshRenderer playerMesh;
     private TrailRenderer playerTrail;
     private Rigidbody playerRigidbody;
+    private ConstantForce playerConstantForce;
 
     public List<Material> colorMat;
     private int colorindex;
@@ -19,6 +20,7 @@ public class PlayerInput : MonoBehaviour
         playerMesh = GetComponent<MeshRenderer>();
         playerTrail = GetComponent<TrailRenderer>();
         playerRigidbody = GetComponent<Rigidbody>();
+        playerConstantForce = GetComponent<ConstantForce>();
         playerMesh.material = colorMat[(int)playerType];
         
     }
@@ -41,6 +43,17 @@ public class PlayerInput : MonoBehaviour
         {
             playerRigidbody.AddForce(Vector3.down * 10, ForceMode.VelocityChange);
         }
+
+        //이거 핵임 쓰면 편함
+      /*  if(Input.GetKeyDown(KeyCode.E))
+        {
+            playerConstantForce.force = new Vector3(0, -10000, 0);
+        }
+
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            playerConstantForce.force = new Vector3(0, 0, 0);
+        }*/
 
         Debug.DrawRay(transform.position, Vector3.down, Color.blue, 5);
         if(Physics.Raycast(transform.position,Vector3.down,out hit,5))
