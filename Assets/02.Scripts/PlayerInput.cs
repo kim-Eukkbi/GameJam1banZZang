@@ -66,6 +66,7 @@ public class PlayerInput : MonoBehaviour
                 {
                     Destroy(currPlate.pizzas[i].gameObject);
                 }
+
                 for (int i = 0; i < currPlate.pizzas.Count; i++)
                 {
                     currPlate.pizzas.RemoveAt(i);
