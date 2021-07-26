@@ -26,7 +26,7 @@ public class TextTimerViewer : MonoBehaviour
             timer.color = Color.red;
         }
 
-        timer.text = time.ToString();
+        timer.text = string.Concat("<size=60>Time</size>\n", time.ToString());
     }
 
     private IEnumerator UpdateTimerRoutine()
