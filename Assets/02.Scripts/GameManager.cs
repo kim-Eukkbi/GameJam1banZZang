@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextTimerViewer textTimerViewer;
     [SerializeField]
+    private Text textScore;
+    [SerializeField]
     private PizzaSpawner pizzaSpawner;
     [SerializeField]
     private Text textAnimTimerText;
@@ -100,6 +102,11 @@ public class GameManager : MonoBehaviour
 
         player.vCams[0].gameObject.SetActive(false);
         player.vCams[1].gameObject.SetActive(true);
+
+        textScore.text = string.Concat("SCORE\n", destroyedPlate * 300);
+
+        textTimerViewer.gameObject.SetActive(false);
+        textScore.gameObject.SetActive(true);
         //여기다가 V Cam 바꾸면 될듯;
     }
 }
