@@ -14,8 +14,9 @@ public class Player : MonoBehaviour
     private Rigidbody playerRigidbody;
     private ConstantForce playerConstantForce;
 
-    public CinemachineBrain cinemachineBrain;
+   // public CinemachineBrain cinemachineBrain
     public TextMeshPro speedTMP;
+    public List<CinemachineVirtualCamera> vCams;
     public List<Material> colorMat;
     private RaycastHit hit;
     private PizzaType playerType;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        vCams[0].gameObject.SetActive(true);
         playerType = PizzaType.RED;
         playerMesh = GetComponent<MeshRenderer>();
         playerTrail = GetComponent<TrailRenderer>();
@@ -37,27 +39,17 @@ public class Player : MonoBehaviour
     {
         float Valocity = Mathf.Abs(playerRigidbody.velocity.y);
 
-        if (Valocity > 200)
+        if (!isShaking)
         {
-            if (!isShaking)
-            {
-                isShaking = true;
-                speedTMP.transform.DOShakePosition(1, 5).OnComplete(() => isShaking = false);
-            }
-            speedTMP.text = string.Format("{0:0}", Valocity);
-            speedTMP.fontSize = Valocity > 800 ? 800 : Valocity * 2f;
-            speedTMP.rectTransform.position += new Vector3(0,  -(Valocity / 500), Valocity / 300);
+            isShaking = true;
+            speedTMP.transform.DOShakePosition(1, 5).OnComplete(() => isShaking = false);
         }
-        else
-        {
-            speedTMP.text = " ";
-            speedTMP.fontSize = 400;
-            speedTMP.rectTransform.position = new Vector3(tMPPos.x, tMPPos.y + Camera.main.transform.position.y - 150, tMPPos.z);
-        }
+        speedTMP.text = string.Format("{0:0}\n<size=50%>km/h</size>", Valocity);
+        //speedTMP.
+        speedTMP.fontSize = Valocity > 120 ? 500 : Valocity * 2f + 300;
+        speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
+    
 
-
-
-        
 
         if (Input.GetMouseButtonDown(0))
         {

@@ -90,12 +90,16 @@ public class GameManager : MonoBehaviour
 
         Instantiate(gameOverFloor, pos, Quaternion.identity);
         Instantiate(fragments, pos2, Quaternion.identity);
+
+        StartCoroutine(CamaraMove());
     }
 
     public IEnumerator CamaraMove()
     {
         yield return new WaitForSeconds(2f);
 
+        player.vCams[0].gameObject.SetActive(false);
+        player.vCams[1].gameObject.SetActive(true);
         //여기다가 V Cam 바꾸면 될듯;
     }
 }
