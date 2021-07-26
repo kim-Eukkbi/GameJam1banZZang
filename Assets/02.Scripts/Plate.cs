@@ -14,34 +14,30 @@ public class Plate : MonoBehaviour
 
     private const int each = 45;
 
-    public void Setup()
+    private void Awake()
     {
         for (int i = 0; i < 8; i++)
         {
             Pizza temp = Instantiate(pizza, transform).GetComponent<Pizza>();
             pizzas.Add(temp);
         }
+    }
 
+    public void Setup()
+    {
         int randomNum = Random.Range(0, 7);
 
         rotateDir = (RotateDir)PizzaManager.instance.platePattern.rotatePattern[randomNum];
 
-        for (int i = 0; i < pizzas.Count; i++)
+        for (int i = 0; i < 8; i++)
         {
             MeshRenderer temp = pizzas[i].GetComponent<MeshRenderer>();
 
             pizzas[i].Type = (PizzaType)PizzaManager.instance.platePattern.patterns[randomNum, i];
 
             temp.material = PizzaManager.instance.materials[PizzaManager.instance.platePattern.patterns[randomNum, i]];
-        }
 
-        for (int i = 0; i < pizzas.Count; i++)
-        {
             pizzas[i].transform.position = transform.position;
-        }
-
-        for (int i = 0; i < pizzas.Count; i++)
-        {
             pizzas[i].transform.rotation = Quaternion.Euler(pizzas[i].transform.rotation.x
                                                           , pizzas[i].transform.rotation.y + each * i,
                                                             pizzas[i].transform.rotation.z);
@@ -58,5 +54,12 @@ public class Plate : MonoBehaviour
         {
             transform.Rotate(new Vector3(0, rotateSpeed * Time.deltaTime, 0));
         }
+    }
+
+    public void SetOff()
+    {
+        PizzaManager.MakePizzaPlate();
+        gameObject.SetActive(false);
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 }
