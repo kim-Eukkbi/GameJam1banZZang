@@ -55,11 +55,4 @@ public class Plate : MonoBehaviour
             transform.Rotate(new Vector3(0, rotateSpeed * Time.deltaTime, 0));
         }
     }
-
-    public void SetOff()
-    {
-        PizzaManager.MakePizzaPlate();
-        gameObject.SetActive(false);
-        transform.rotation = Quaternion.Euler(0, 0, 0);
-    }
 }

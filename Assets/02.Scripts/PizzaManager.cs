@@ -27,9 +27,4 @@ public class PizzaManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    public static void MakePizzaPlate()
-    {
-        instance.pizzaSpawner.MakePizzaPlate();
-    }
 }

@@ -92,13 +92,11 @@ public class PlayerInput : MonoBehaviour
             //Destroy(plate.pizzas[i].gameObject, 1f);
         }
 
-        yield return new WaitForSeconds(2f);
-        plate.SetOff();
-        /* for (int i = 0; i < plate.pizzas.Count; i++)
-         {
-             //plate.pizzas.RemoveAt(i);
-         }
- */
+        yield return new WaitForSeconds(0.5f);
 
+         for (int i = 0; i < plate.pizzas.Count; i++)
+         {
+             plate.pizzas.RemoveAt(i);
+         }
     }
 }
