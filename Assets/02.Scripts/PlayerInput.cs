@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System.Linq;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class PlayerInput : MonoBehaviour
         {
             if(hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
             {
-                print("Ãæµ¹");
+                //print("Ãæµ¹");
                 Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
                 StartCoroutine(DestroyList(currPlate));
             }
@@ -73,30 +74,34 @@ public class PlayerInput : MonoBehaviour
 
     private IEnumerator DestroyList(Plate plate)
     {
+        List<Collider> col = Physics.OverlapSphere(new Vector3(0, 0, 0), 10).ToList();
+        print(col.Count);
+        /*foreach (Collider hit in col)
+        {
+            Rigidbody hitRig = hit.gameObject.GetComponent<Rigidbody>();
+            if(hitRig != null)
+            {
+                print("Æø*8");
+                hitRig.AddExplosionForce(500, new Vector3(0, 0, 0), 10, 0, ForceMode.Impulse);
+            }
+        }*/
+
         for (int i = 0; i < plate.pizzas.Count; i++)
         {
             Rigidbody rigidbody = plate.pizzas[i].transform.GetComponent<Rigidbody>();
             rigidbody.isKinematic = false;
-
-            plate.pizzas[i].transform.rotation = Quaternion.identity;
-
-            Vector3 dirVec = new Vector3(Mathf.Cos(Mathf.PI * 2 * i / plate.pizzas.Count)
-                                        , Mathf.Sin(Mathf.PI * 2 * i / plate.pizzas.Count)
-                                        , Mathf.Tan(Mathf.PI * 2 * i / plate.pizzas.Count));
-
-            Vector3 rotVec = Vector3.forward * 360 * i / plate.pizzas.Count + Vector3.forward * 90;
-            plate.pizzas[i].transform.Rotate(rotVec);
-
-            rigidbody.AddForce(dirVec.normalized * 10, ForceMode.Impulse);
-            //rigidbody.AddExplosionForce(500, new Vector3(0, 0, 0), 10);
-            //Destroy(plate.pizzas[i].gameObject, 1f);
+           // plate.pizzas[i].GetComponent<Pizza>().ExplosionPizza();
+            Destroy(plate.pizzas[i].gameObject, 1f);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        col.Clear();
 
-         for (int i = 0; i < plate.pizzas.Count; i++)
-         {
+        yield return new WaitForSeconds(1f);
+
+
+        for (int i = 0; i < plate.pizzas.Count; i++)
+        {
              plate.pizzas.RemoveAt(i);
-         }
+        }
     }
 }
