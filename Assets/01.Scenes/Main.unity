@@ -503,7 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 1
-  m_FollowOffset: {x: -6.45, y: 31, z: -78.66}
+  m_FollowOffset: {x: 0, y: 31, z: -78.66}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -530,12 +530,12 @@ MonoBehaviour:
   m_LookaheadIgnoreY: 0
   m_HorizontalDamping: 0.5
   m_VerticalDamping: 0.5
-  m_ScreenX: 0.47656277
-  m_ScreenY: 0.4564809
-  m_DeadZoneWidth: 0.11979165
+  m_ScreenX: 0.5
+  m_ScreenY: 0.5
+  m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_SoftZoneWidth: 0.8
-  m_SoftZoneHeight: 0.8
+  m_SoftZoneHeight: 0.85
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
@@ -610,7 +610,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0c41376f075923c4da2812d92db0292e, type: 3}
     m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
@@ -622,7 +622,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uB0A8\uC740 \uC2DC\uAC04"
+  m_Text: TIME
 --- !u!222 &490982880
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -721,7 +721,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0c41376f075923c4da2812d92db0292e, type: 3}
     m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
@@ -972,14 +972,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741288891}
-  m_LocalRotation: {x: 0.20337412, y: 0.056777917, z: -0.0118143745, w: 0.97738206}
-  m_LocalPosition: {x: -6.45, y: 101, z: -95.87}
+  m_LocalRotation: {x: 0.18647997, y: -0.01679152, z: 0.003187672, w: 0.9823101}
+  m_LocalPosition: {x: 2.69, y: 101, z: -95.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 372351313}
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 23.574, y: 0, z: 0}
 --- !u!1 &910808558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,13 +1152,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.20337412, y: 0.056777917, z: -0.0118143745, w: 0.97738206}
+  m_LocalRotation: {x: 0.20371866, y: 0, z: 0, w: 0.9790295}
   m_LocalPosition: {x: 0, y: 5.12, z: -13.270001}
   m_LocalScale: {x: 0.2, y: 0.20000003, z: 0.2}
   m_Children: []
   m_Father: {fileID: 75960717}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 23.509, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
