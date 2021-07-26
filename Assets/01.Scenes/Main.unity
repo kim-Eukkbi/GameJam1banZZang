@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 40b58979fd5c35d4da248a0f3d2e9c22, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1019,6 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b4c55c9d244814cad7a89eec836f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pizzaSpawner: {fileID: 1960031615}
   materials:
   - {fileID: 2100000, guid: 43615fafa8228184c92df81e45b6d3b4, type: 2}
   - {fileID: 2100000, guid: 48382c0c992f32b4dbd4f1cdedf01972, type: 2}

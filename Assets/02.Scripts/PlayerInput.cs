@@ -62,16 +62,17 @@ public class PlayerInput : MonoBehaviour
             {
                 print("Ãæµ¹");
                 Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
-                for (int i =0;i < currPlate.pizzas.Count;i++)
-                {
-                    Destroy(currPlate.pizzas[i].gameObject);
-                }
+                //for (int i =0;i < currPlate.pizzas.Count;i++)
+                //{
+                //    Destroy(currPlate.pizzas[i].gameObject);
+                //}
 
-                for (int i = 0; i < currPlate.pizzas.Count; i++)
-                {
-                    currPlate.pizzas.RemoveAt(i);
-                }
+                //for (int i = 0; i < currPlate.pizzas.Count; i++)
+                //{
+                //    currPlate.pizzas.RemoveAt(i);
+                //}
 
+                currPlate.SetOff();
             }
             else
             {

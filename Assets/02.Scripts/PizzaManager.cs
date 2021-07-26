@@ -9,6 +9,9 @@ public class PizzaManager : MonoBehaviour
 {
     public static PizzaManager instance;
 
+    [SerializeField]
+    private PizzaSpawner pizzaSpawner;
+
     public Material[] materials;
     public PizzaType[] types = new PizzaType[] { PizzaType.RED, PizzaType.GREEN };
     public PlatePattern platePattern = new PlatePattern();
@@ -23,5 +26,10 @@ public class PizzaManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public static void MakePizzaPlate()
+    {
+        instance.pizzaSpawner.MakePizzaPlate();
     }
 }
