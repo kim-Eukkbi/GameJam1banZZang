@@ -25,8 +25,8 @@ public class Plate : MonoBehaviour
         {
             MeshRenderer temp = pizzas[i].GetComponent<MeshRenderer>();
 
-            temp.material = PizzaManager.instance.materials[PizzaManager.instance.platePattern.patterns[randomNum, i]];
             pizzas[i].Type = (PizzaType)PizzaManager.instance.platePattern.patterns[randomNum, i];
+            temp.material = PizzaManager.instance.materials[PizzaManager.instance.platePattern.patterns[randomNum, i]];
         }
 
         for (int i = 0; i < pizzas.Count; i++)
