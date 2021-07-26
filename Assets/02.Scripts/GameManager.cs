@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject gameOverFloor;
+    [SerializeField]
+    private GameObject fragments;
+
+    [SerializeField]
+    private int minusTime = 2;
 
     public int time = 60;
     public int destroyedPlate = 0;
@@ -48,9 +53,9 @@ public class GameManager : MonoBehaviour
     {
         if (!canMiss) return;
 
-        if(!(time - 3 <= 0))
+        if(!(time - minusTime <= 0))
         {
-            time -= 3;
+            time -= minusTime;
         }
 
         textTimerViewer.UpdateTimer(time);
@@ -81,7 +86,9 @@ public class GameManager : MonoBehaviour
         player.speedTMP.gameObject.SetActive(false);
 
         Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y - 500, player.transform.position.z);
+        Vector3 pos2 = new Vector3(player.transform.position.x + 12.5f, player.transform.position.y - 450, player.transform.position.z);
 
         Instantiate(gameOverFloor, pos, Quaternion.identity);
+        Instantiate(fragments, pos2, Quaternion.identity);
     }
 }
