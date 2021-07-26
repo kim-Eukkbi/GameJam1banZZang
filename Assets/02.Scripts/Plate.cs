@@ -7,7 +7,8 @@ public class Plate : MonoBehaviour
 {
     [SerializeField]
     private GameObject pizza;
-    private List<Pizza> pizzas = new List<Pizza>();
+
+    public List<Pizza> pizzas = new List<Pizza>();
 
     private const int each = 45;
 

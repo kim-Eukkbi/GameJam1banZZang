@@ -368,8 +368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorMat:
-  - {fileID: 2100000, guid: 48382c0c992f32b4dbd4f1cdedf01972, type: 2}
   - {fileID: 2100000, guid: 43615fafa8228184c92df81e45b6d3b4, type: 2}
+  - {fileID: 2100000, guid: 48382c0c992f32b4dbd4f1cdedf01972, type: 2}
 --- !u!75 &75960720
 ConstantForce:
   m_ObjectHideFlags: 0

@@ -10,22 +10,29 @@ public class PlayerInput : MonoBehaviour
 
     public List<Material> colorMat;
     private int colorindex;
+    private RaycastHit hit;
+    private PizzaType playerType;
 
     void Start()
     {
-        colorindex = 0;
+        playerType = PizzaType.RED;
         playerMesh = GetComponent<MeshRenderer>();
         playerTrail = GetComponent<TrailRenderer>();
         playerRigidbody = GetComponent<Rigidbody>();
-        playerMesh.material = colorMat[colorindex];
+        playerMesh.material = colorMat[(int)playerType];
+        
     }
 
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            colorindex = (colorindex + 1) % 2;
-            playerMesh.material = colorMat[colorindex];
+            if (playerType.Equals(PizzaType.GREEN))
+                playerType = PizzaType.RED;
+            else
+                playerType = PizzaType.GREEN;
+
+            playerMesh.material = colorMat[(int)playerType];
            /* playerTrail.startColor = colorMat[colorindex].color;
             playerTrail.endColor = colorMat[colorindex].color;*/
         }
@@ -33,6 +40,29 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             playerRigidbody.AddForce(Vector3.down * 10, ForceMode.VelocityChange);
+        }
+
+        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 5);
+        if(Physics.Raycast(transform.position,Vector3.down,out hit,5))
+        {
+            if(hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
+            {
+                print("Ãæµ¹");
+                Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
+                for (int i =0;i < currPlate.pizzas.Count;i++)
+                {
+                    Destroy(currPlate.pizzas[i].gameObject);
+                }
+                for (int i = 0; i < currPlate.pizzas.Count; i++)
+                {
+                    currPlate.pizzas.RemoveAt(i);
+                }
+
+            }
+            else
+            {
+
+            }
         }
     }
 }
