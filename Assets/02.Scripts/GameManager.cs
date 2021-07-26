@@ -84,4 +84,11 @@ public class GameManager : MonoBehaviour
 
         Instantiate(gameOverFloor, pos, Quaternion.identity);
     }
+
+    public IEnumerator CamaraMove()
+    {
+        yield return new WaitForSeconds(2f);
+
+        //여기다가 V Cam 바꾸면 될듯;
+    }
 }

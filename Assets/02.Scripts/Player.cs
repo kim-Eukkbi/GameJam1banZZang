@@ -5,6 +5,7 @@ using TMPro;
 using DG.Tweening;
 using System.Linq;
 using UnityEngineInternal;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Player : MonoBehaviour
     private Rigidbody playerRigidbody;
     private ConstantForce playerConstantForce;
 
+    public CinemachineBrain cinemachineBrain;
     public TextMeshPro speedTMP;
     public List<Material> colorMat;
     private RaycastHit hit;
