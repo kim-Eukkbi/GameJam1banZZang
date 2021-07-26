@@ -232,7 +232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75960712}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.4499998, y: -119.3, z: -17.21}
+  m_LocalPosition: {x: 2.4499998, y: 70, z: -17.21}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children:
   - {fileID: 963194228}
@@ -770,7 +770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741288891}
   m_LocalRotation: {x: 0.20337412, y: 0.056777917, z: -0.0118143745, w: 0.97738206}
-  m_LocalPosition: {x: -4, y: -88.3, z: -95.87}
+  m_LocalPosition: {x: -4, y: 101, z: -95.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 372351313}
@@ -795,7 +795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &910808559
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -950,7 +950,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.20337412, y: 0.056777917, z: -0.0118143745, w: 0.97738206}
-  m_LocalPosition: {x: -1.29, y: 6.2000003, z: -15.732001}
+  m_LocalPosition: {x: -1, y: 5.12, z: -13.27}
   m_LocalScale: {x: 0.2, y: 0.20000003, z: 0.2}
   m_Children: []
   m_Father: {fileID: 75960717}
@@ -1262,7 +1262,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62679f523882fb45b86952895397c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pizza: {fileID: 5349243230708091779, guid: 225d5378266d1804fb7ae1aa1ca7eff9, type: 3}
   plate: {fileID: 3472940116743826251, guid: e537b7122596c7a428e77d3fef68f9ca, type: 3}
 --- !u!4 &1960031616
 Transform:

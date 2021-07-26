@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour
         playerMesh = GetComponent<MeshRenderer>();
         playerTrail = GetComponent<TrailRenderer>();
         playerRigidbody = GetComponent<Rigidbody>();
+        playerMesh.material = colorMat[colorindex];
     }
 
     void Update()
