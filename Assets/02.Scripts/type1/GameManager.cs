@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         else
         {
             if(isPowerUp)
-                physicsMaterial.bounciness = 10f;
+                physicsMaterial.bounciness = 1f;
             else
                 physicsMaterial.bounciness = .2f;
         }
