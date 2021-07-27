@@ -42,12 +42,12 @@ public class Player : MonoBehaviour
         if (!isShaking)
         {
             isShaking = true;
-            speedTMP.transform.DOShakePosition(1, 5).OnComplete(() => isShaking = false);
+            speedTMP.transform.DOShakePosition(1, Valocity / 20).OnComplete(() => isShaking = false);
         }
         speedTMP.text = string.Format("{0:0}\n<size=50%>km/h</size>", Valocity);
-        float colorR = Valocity <= 0 ? 0.17f : Valocity >= 120 ? 1 : Valocity /100;
-        float colorG = Valocity <= 0 ? 0.19f : Valocity >= 120 ? 1 : Valocity /100;
-        float colorB = Valocity <= 0 ? 0.43f : Valocity >= 120 ? 1 : Valocity /100;
+        float colorR = Mathf.Clamp(Valocity / 100, 0.17f,1);
+        float colorG = Mathf.Clamp(Valocity / 100, 0.19f,1);
+        float colorB = Mathf.Clamp(Valocity / 100, 0.43f,1);
         speedTMP.color = new Color(colorR, colorG, colorB);
         //이거 내일 다시 수정 해야해
         speedTMP.fontSize = Valocity > 120 ? 500 : Valocity * 2f + 300;
@@ -68,8 +68,8 @@ public class Player : MonoBehaviour
         }
 
 
-        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 10 + playerRigidbody.velocity.y / 100);
-        if(Physics.Raycast(transform.position,Vector3.down,out hit, 10 + playerRigidbody.velocity.y / 100))
+        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6 + playerRigidbody.velocity.y / 100);
+        if(Physics.Raycast(transform.position,Vector3.down,out hit, 6 + playerRigidbody.velocity.y / 100))
         {
             if(hit.transform.GetComponent<Pizza>() != null)
             {

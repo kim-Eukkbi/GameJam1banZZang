@@ -98,8 +98,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator CamaraMove()
     {
-        yield return new WaitForSeconds(2f);
-
+        yield return new WaitForSeconds(5f);
         player.vCams[0].gameObject.SetActive(false);
         player.vCams[1].gameObject.SetActive(true);
 
