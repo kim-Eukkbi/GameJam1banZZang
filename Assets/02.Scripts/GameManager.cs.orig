@@ -118,9 +118,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(FragmentsMove(pos2));
     }
 
+<<<<<<< HEAD
 
 
     public IEnumerator FragmentsMove(Vector3 insPos)
+=======
+    public IEnumerator InstantiateFragments(Vector3 insPos)
+>>>>>>> origin/main
     {
         Sequence sequence = DOTween.Sequence();
         yield return new WaitForSeconds(4f);
