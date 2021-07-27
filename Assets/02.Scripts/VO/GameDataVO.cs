@@ -1,5 +1,12 @@
+[System.Serializable]
 public class GameDataVO
 {
-    public int highScore;
-    public int highSpeed;
+    public GameDataVO(int topScore = 0, int topSpeed = 0)
+    {
+        this.highScore = topScore;
+        this.highSpeed = topSpeed;
+    }
+
+    public int highScore = 0;
+    public int highSpeed = 0;
 }
