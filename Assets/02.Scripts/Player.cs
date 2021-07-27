@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        vCams[0].gameObject.SetActive(true);
+        //vCams[0].gameObject.SetActive(true);
         playerType = PizzaType.RED;
         playerMesh = GetComponent<MeshRenderer>();
         playerTrail = GetComponent<TrailRenderer>();

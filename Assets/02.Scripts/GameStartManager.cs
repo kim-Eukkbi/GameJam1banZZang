@@ -33,8 +33,16 @@ public class GameStartManager : MonoBehaviour
     public void GameStart()
     {
         GameManager.instance.GameStart();
-        panelStart.SetActive(false);
+        StartCoroutine(LateSetActiveFalse(panelStart));
         panelStartInvisible.SetActive(false);
+        GameManager.instance.player.vCams[4].gameObject.SetActive(false);
+        GameManager.instance.player.vCams[0].gameObject.SetActive(true);
+    }
+
+    private IEnumerator LateSetActiveFalse(GameObject gameObject)
+    {
+        yield return new WaitForSeconds(1f);
+        gameObject.SetActive(false);
     }
 
     public void GameEnd()
