@@ -29,6 +29,7 @@ public class Plate : MonoBehaviour
         int randomNum = Random.Range(0, 7);
 
         rotateDir = (RotateDir)PizzaManager.instance.platePattern.rotatePattern[randomNum];
+        rotateSpeed = PizzaManager.instance.platePattern.rotateSpeed[randomNum];
 
         for (int i = 0; i < 8; i++)
         {

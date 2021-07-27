@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
         inGameAudio.Play();
 
         textTimerViewer.TimerEnable(true);
+        textScore.text = string.Empty;
         textScore.gameObject.SetActive(false);
 
         panelGameEnd.SetActive(false);
