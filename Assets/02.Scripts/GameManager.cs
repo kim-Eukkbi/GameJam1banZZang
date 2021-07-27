@@ -145,17 +145,14 @@ public class GameManager : MonoBehaviour
             Instantiate(fragments, insPos, Quaternion.identity);
             yield return new WaitForSeconds(.05f);
         }
-        cylinder.SetActive(false);
+        //cylinder.SetActive(false);
         yield return new WaitForSeconds(5f);
         CanMerge = true;
         //print(destroyedPlate *3);
         sequence.Append(player.transform.DOScale(new Vector3(destroyedPlate * 3, destroyedPlate * 3, destroyedPlate * 3),.5f));
        // sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate * 3, .5f));
-        yield return new WaitForSeconds(destroyedPlate / 20);
-        CinemachineTransposer cinemachineTransposer = player.vCams[2].GetCinemachineComponent<CinemachineTransposer>();
-        cinemachineTransposer.m_FollowOffset =
-            Vector3.Lerp(cinemachineTransposer.m_FollowOffset, cinemachineTransposer.m_FollowOffset
-            + new Vector3(destroyedPlate * 5, 0, 0), Time.deltaTime * (destroyedPlate / 20));
+        player.vCams[2].gameObject.SetActive(false);
+        player.vCams[3].gameObject.SetActive(true);
     }
 
     public IEnumerator CamaraMove()
