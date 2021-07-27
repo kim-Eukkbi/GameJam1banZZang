@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
     private Rigidbody playerRigidbody;
     private ConstantForce playerConstantForce;
 
-   // public CinemachineBrain cinemachineBrain
     public TextMeshPro speedTMP;
     public List<CinemachineVirtualCamera> vCams;
     public List<Material> colorMat;
@@ -49,7 +48,6 @@ public class Player : MonoBehaviour
         float colorG = Mathf.Clamp(Valocity / 100, 0.19f,1);
         float colorB = Mathf.Clamp(Valocity / 100, 0.43f,1);
         speedTMP.color = new Color(colorR, colorG, colorB);
-        //이거 내일 다시 수정 해야해
         speedTMP.fontSize = Valocity > 120 ? 500 : Valocity * 2f + 300;
         speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
     
@@ -63,8 +61,6 @@ public class Player : MonoBehaviour
                 playerType = PizzaType.GREEN;
 
             playerMesh.material = colorMat[(int)playerType];
-           /* playerTrail.startColor = colorMat[colorindex].color;
-            playerTrail.endColor = colorMat[colorindex].color;*/
         }
 
 

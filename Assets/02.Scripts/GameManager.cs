@@ -88,12 +88,24 @@ public class GameManager : MonoBehaviour
         player.speedTMP.gameObject.SetActive(false);
 
         Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y - 500, player.transform.position.z);
-        Vector3 pos2 = new Vector3(player.transform.position.x + 12.5f, player.transform.position.y - 450, player.transform.position.z);
+        Vector3 pos2 = new Vector3(player.transform.position.x + 12.5f, player.transform.position.y, player.transform.position.z);
 
         Instantiate(gameOverFloor, pos, Quaternion.identity);
-        Instantiate(fragments, pos2, Quaternion.identity);
 
+        StartCoroutine(InstantiateFragments(pos2));
         StartCoroutine(CamaraMove());
+    }
+
+
+    public IEnumerator InstantiateFragments(Vector3 insPos)
+    {
+        yield return new WaitForSeconds(4f);
+        for(int i = 0; i < destroyedPlate; i++)
+        {
+            Instantiate(fragments, insPos, Quaternion.identity);
+            yield return new WaitForSeconds(.05f);
+        }
+           
     }
 
     public IEnumerator CamaraMove()
@@ -101,6 +113,9 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         player.vCams[0].gameObject.SetActive(false);
         player.vCams[1].gameObject.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        player.vCams[1].gameObject.SetActive(false);
+        player.vCams[2].gameObject.SetActive(true);
 
         textScore.text = string.Concat("SCORE\n", destroyedPlate * 300);
 
