@@ -796,6 +796,7 @@ MonoBehaviour:
   destroyedPlate: 0
   canMiss: 1
   CanMerge: 0
+  isGameOver: 0
   isTest: 0
 --- !u!4 &599348239
 Transform:
@@ -2164,7 +2165,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1394057311
 Transform:
   m_ObjectHideFlags: 0
