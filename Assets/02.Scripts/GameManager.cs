@@ -69,6 +69,7 @@ public class GameManager : MonoBehaviour
     public bool canMiss = true;
     public bool CanMerge = false;
     public bool isGameOver = false;
+    public bool canCheck = false;
 
     public bool isTest = true;
 
@@ -237,7 +238,7 @@ public class GameManager : MonoBehaviour
             topScore = destroyedPlate;
         }
 
-        GameDataVO vo = new GameDataVO(topScore);
+        GameDataVO vo = new GameDataVO(topScore, topSpeed);
 
         dataManager.SaveData(vo);
     }
@@ -272,6 +273,7 @@ public class GameManager : MonoBehaviour
         topSpeed = vo.highSpeed;
 
         textTopScore.text = "Top Score\n\n<size=900>"+ topScore +"</size>\n<size=500>floor</size>";
+        textTopspeed.text = "Top Speed\n\n<size=900>" + topSpeed + "</size>\n<size=500>km/h</size>";
 
         panelGameEnd.SetActive(true);
         panelGameEndInvisible.SetActive(true);
