@@ -4,13 +4,16 @@ using System.Diagnostics.Contracts;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using System.Linq;
+using DG.Tweening;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField]
-    private Player player;
+    public Player player;
+
     [SerializeField]
     private TextTimerViewer textTimerViewer;
     [SerializeField]
@@ -30,6 +33,7 @@ public class GameManager : MonoBehaviour
     public int destroyedPlate = 0;
 
     public bool canMiss = true;
+    public bool CanMerge = false;
 
     private void Awake()
     {
@@ -80,35 +84,48 @@ public class GameManager : MonoBehaviour
 
         Instantiate(gameOverFloor, pos, Quaternion.identity);
 
-        StartCoroutine(InstantiateFragments(pos2));
-        StartCoroutine(CamaraMove());
+        StartCoroutine(FragmentsMove(pos2));
     }
 
 
-    public IEnumerator InstantiateFragments(Vector3 insPos)
+
+    public IEnumerator FragmentsMove(Vector3 insPos)
     {
+        Sequence sequence = DOTween.Sequence();
         yield return new WaitForSeconds(4f);
         for(int i = 0; i < destroyedPlate; i++)
         {
             Instantiate(fragments, insPos, Quaternion.identity);
             yield return new WaitForSeconds(.05f);
         }
-           
+
+        yield return new WaitForSeconds(5f);
+        CanMerge = true;
+        print(10 + destroyedPlate / 5);
+        sequence.Append(player.transform.DOScale(new Vector3((10 + destroyedPlate) * 3, (10 + destroyedPlate) * 3, (10 + destroyedPlate) * 3),destroyedPlate / 50));
+        sequence.Join(player.transform.DOMoveY(player.transform.position.y + ((10 + destroyedPlate) * 3), destroyedPlate / 50));
+        yield return new WaitForSeconds(destroyedPlate / 50);
+        //player.vCams[2].
     }
 
     public IEnumerator CamaraMove()
     {
-        yield return new WaitForSeconds(5f);
         player.vCams[0].gameObject.SetActive(false);
         player.vCams[1].gameObject.SetActive(true);
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(7f);
         player.vCams[1].gameObject.SetActive(false);
         player.vCams[2].gameObject.SetActive(true);
 
-        textScore.text = string.Concat("SCORE\n", destroyedPlate * 300);
+        textScore.text = string.Concat("SCORE\n", destroyedPlate * 500);
 
         textTimerViewer.TimerEnable(false);
         textScore.gameObject.SetActive(true);
         //여기다가 V Cam 바꾸면 될듯;
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(player.transform.position, 300);
+        Gizmos.color = Color.blue;
     }
 }

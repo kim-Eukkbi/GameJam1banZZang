@@ -22,13 +22,19 @@ public class TextTimerViewer : MonoBehaviour
 
     public void UpdateTimer(int time)
     {
+        if (time <= 10)
+        {
+            textTime.color = Color.red;
+        }
+
+        if (time <= 2)
+        {
+            StartCoroutine(GameManager.instance.CamaraMove());
+        }
+
         if (time <= 0)
         {
             GameManager.instance.GameOver();
-        }
-        else if (time <= 10)
-        {
-            textTime.color = Color.red;
         }
 
         textAnimTimeText.text = time.ToString();
