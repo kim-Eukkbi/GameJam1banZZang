@@ -24,6 +24,14 @@ public class GameManager : MonoBehaviour
     private GameObject fragments;
 
     [SerializeField]
+    private GameObject cylinder;
+
+    [SerializeField]
+    private AudioSource startAudio;
+    [SerializeField]
+    private AudioSource inGameAudio;
+
+    [SerializeField]
     private int minusTime = 2;
 
     public int time = 60;
@@ -43,6 +51,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        textTimerViewer.TimerEnable(false);
+        player.speedTMP.enabled = false;
+        player.GetComponent<MeshRenderer>().enabled = false;
+        player.GetComponent<Rigidbody>().isKinematic = true;
+        cylinder.SetActive(false);
+    }
+
     public static void DestroyPlate()
     {
         instance.destroyedPlate++;
@@ -59,6 +76,20 @@ public class GameManager : MonoBehaviour
 
         textTimerViewer.UpdateTimer(time);
         textTimerViewer.MissTimer();
+    }
+
+    public void GameStart()
+    {
+        textTimerViewer.StartTimer();
+        textTimerViewer.TimerEnable(true);
+        player.speedTMP.enabled = true;
+        player.GetComponent<MeshRenderer>().enabled = true;
+        player.GetComponent<Rigidbody>().isKinematic = false;
+        cylinder.SetActive(true);
+        pizzaSpawner.SpawnPlate();
+
+        startAudio.Stop();
+        inGameAudio.Play();
     }
 
     public void GameOver()
@@ -83,7 +114,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(InstantiateFragments(pos2));
         StartCoroutine(CamaraMove());
     }
-
 
     public IEnumerator InstantiateFragments(Vector3 insPos)
     {

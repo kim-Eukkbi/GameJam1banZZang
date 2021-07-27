@@ -49,6 +49,11 @@ public class TextTimerViewer : MonoBehaviour
         });
     }
 
+    public void StartTimer()
+    {
+        StartCoroutine(UpdateTimerRoutine());
+    }
+
     public void TimerEnable(bool enable)
     {
         textTime.enabled = enable;

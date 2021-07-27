@@ -9,15 +9,10 @@ public class PizzaSpawner : MonoBehaviour
     public List<Plate> plates = new List<Plate>();
     private const int interval = 40;
 
-    private void Start()
+    public void SpawnPlate()
     {
         PoolManager.CreatPool<Plate>(plate, gameObject.transform, 500);
 
-/*        lastPlate = PoolManager.GetItem<Plate>();
-
-        lastPlate.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        lastPlate.Setup();
-*/
         for (int i = 0; i < 500; i++)
         {
             Plate temp = PoolManager.GetItem<Plate>();
