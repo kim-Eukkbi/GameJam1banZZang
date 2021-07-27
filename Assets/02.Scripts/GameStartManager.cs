@@ -10,7 +10,7 @@ public class GameStartManager : MonoBehaviour
     [SerializeField]
     private GameObject panelStart;
     [SerializeField]
-    private GameObject panelStart2;
+    private GameObject panelStartInvisible;
     [SerializeField]
     private Button textStart;
     [SerializeField]
@@ -21,7 +21,7 @@ public class GameStartManager : MonoBehaviour
         if(GameManager.instance.isTest)
         {
             panelStart.SetActive(false);
-            panelStart2.SetActive(false);
+            panelStartInvisible.SetActive(false);
         }
         else
         {
@@ -34,7 +34,7 @@ public class GameStartManager : MonoBehaviour
     {
         GameManager.instance.GameStart();
         panelStart.SetActive(false);
-        panelStart2.SetActive(false);
+        panelStartInvisible.SetActive(false);
     }
 
     public void GameEnd()
