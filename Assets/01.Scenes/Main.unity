@@ -375,6 +375,7 @@ MonoBehaviour:
   colorMat:
   - {fileID: 2100000, guid: 43615fafa8228184c92df81e45b6d3b4, type: 2}
   - {fileID: 2100000, guid: 48382c0c992f32b4dbd4f1cdedf01972, type: 2}
+  tMPPos: {x: 0, y: 0, z: 0}
 --- !u!75 &75960720
 ConstantForce:
   m_ObjectHideFlags: 0
@@ -795,6 +796,7 @@ MonoBehaviour:
   minusTime: 2
   playerOriginPos: {x: 0, y: 70, z: -17.21}
   playerOriginScale: {x: 5, y: 5, z: 5}
+  fragmentList: []
   time: 60
   destroyedPlate: 0
   canMiss: 1

@@ -47,7 +47,8 @@ public class GameManager : MonoBehaviour
     private Vector3 playerOriginScale;
 
     private GameObject floor;
-    private List<GameObject> fragmentList = new List<GameObject>();
+   [SerializeField]
+    private List<GameObject> fragmentList;
 
     private Sequence sequence;
 
@@ -137,24 +138,29 @@ public class GameManager : MonoBehaviour
             Destroy(floor);
         }
 
-        for (int i = 0; i < fragmentList.Count; i++)
+        float fragCount = fragmentList.Count;
+
+        for (int i = 0; i < fragCount; i++)
         {
-            Destroy(fragmentList[i]);
-            fragmentList.RemoveAt(i);
+            Destroy(fragmentList[i].gameObject);
         }
 
+        fragmentList.Clear();
+
         isGameOver = false;
+        CanMerge = false;
 
         player.vCams[3].gameObject.SetActive(false);
         player.vCams[0].gameObject.SetActive(true);
 
         player.transform.position = playerOriginPos;
         player.transform.localScale = playerOriginScale;
-        player.tMPPos = player.speedTMP.rectTransform.position;
+       
 
         time = maxTime;
 
         player.speedTMP.gameObject.SetActive(true);
+
         cylinder.SetActive(true);
 
         inGameAudio.Stop();

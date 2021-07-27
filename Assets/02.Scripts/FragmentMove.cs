@@ -11,6 +11,8 @@ public class FragmentMove : MonoBehaviour
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody>();
+        Rigidbody.useGravity = true;
+        isOnRid = false;
     }
 
     void Update()
@@ -22,6 +24,7 @@ public class FragmentMove : MonoBehaviour
                 Rigidbody.useGravity = false;
                 distance = CalDistance();
                 Destroy(this.gameObject, 3);
+                isOnRid = true;
             }
                 
             transform.position = Vector3.Lerp(transform.position, GameManager.instance.player.transform.position, Time.deltaTime * (distance / 100));
