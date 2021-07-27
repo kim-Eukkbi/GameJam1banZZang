@@ -15,13 +15,20 @@ public class GameStartManager : MonoBehaviour
 
     void Start()
     {
-        textStart.onClick.AddListener(() =>
+        if(GameManager.instance.isTest)
         {
-            GameManager.instance.GameStart();
             panelStart.SetActive(false);
+        }
+        else
+        {
+            textStart.onClick.AddListener(() =>
+            {
+                GameManager.instance.GameStart();
+                panelStart.SetActive(false);
 
-        });
-        textExit.onClick.AddListener(GameEnd);
+            });
+            textExit.onClick.AddListener(GameEnd);
+        }
     }
 
     private void GameEnd()

@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public bool canMiss = true;
     public bool CanMerge = false;
 
+    public bool isTest = true;
+
     private void Awake()
     {
         if(instance == null)
@@ -57,11 +59,22 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        /*textTimerViewer.TimerEnable(false);
-        player.speedTMP.enabled = false;
-        player.GetComponent<MeshRenderer>().enabled = false;
-        player.GetComponent<Rigidbody>().isKinematic = true;
-        cylinder.SetActive(false);*/
+        if(isTest)
+        {
+            textTimerViewer.StartTimer();
+            pizzaSpawner.SpawnPlate();
+
+            startAudio.Stop();
+            inGameAudio.Play();
+        }
+        else
+        {
+            textTimerViewer.TimerEnable(false);
+            player.speedTMP.enabled = false;
+            player.GetComponent<MeshRenderer>().enabled = false;
+            player.GetComponent<Rigidbody>().isKinematic = true;
+            cylinder.SetActive(false);
+        }
     }
 
     public static void DestroyPlate()
@@ -100,7 +113,10 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < pizzaSpawner.plates.Count; i++)
         {
-            Destroy(pizzaSpawner.plates[i].gameObject);
+            if (pizzaSpawner.plates[i] != null)
+            {
+                Destroy(pizzaSpawner.plates[i].gameObject);
+            }
         }
 
         for (int i = 0; i < pizzaSpawner.plates.Count; i++)
