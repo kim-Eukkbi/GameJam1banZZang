@@ -258,7 +258,7 @@ public class GameManager : MonoBehaviour
 
         float scaleSize = Mathf.Clamp(destroyedPlate * 3, 3, 150);
         sequence.Append(player.transform.DOScale(new Vector3(scaleSize, scaleSize, scaleSize),2f));
-        sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate  * 1.5f, 2f));
+        sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate, 2f));
         sequence.Append(scoreNum.DOCounter(0, destroyedPlate, 1f));
         player.vCams[2].gameObject.SetActive(false);
         player.vCams[3].gameObject.SetActive(true);

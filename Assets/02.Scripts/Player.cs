@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         float colorB = Mathf.Clamp(Valocity / 100, 0.43f, 1);
         speedTMP.color = new Color(colorR, colorG, colorB);
         speedTMP.fontSize = Valocity > 120 ? 500 : Valocity * 2f + 300;
-        speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
+        //speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
 
 
         if (Input.GetMouseButtonDown(0))
@@ -67,7 +67,6 @@ public class Player : MonoBehaviour
         }
 
 
-        //Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6 + Valocity / 70);
         if (Physics.Raycast(transform.position, Vector3.down, out hit, 6 + Valocity / 70))
         {
             if (hit.transform.GetComponent<Pizza>() != null)
@@ -97,7 +96,7 @@ public class Player : MonoBehaviour
     private IEnumerator DestroyList(Plate plate)
     {
         GameManager.instance.DestroyPlate();
-        //Debug.LogError(GameManager.instance.destroyedPlate);
+
 
         for (int i = 0; i < plate.pizzas.Count; i++)
         {

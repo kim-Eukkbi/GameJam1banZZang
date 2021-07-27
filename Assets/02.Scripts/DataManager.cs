@@ -10,8 +10,6 @@ public class DataManager : MonoBehaviour
     public void SaveData(GameDataVO vo)
     {
         string json = JsonUtility.ToJson(vo);
-        print(path);
-        print(json);
         File.WriteAllText(path, json);
     }
 
