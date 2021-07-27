@@ -51,4 +51,6 @@ public class PlatePattern
     };
 
     public int[] rotatePattern = new int[] { 0, 1, 1, 0, 1, 0, 0 };
+
+    public int[] rotateSpeed = new int[] {40, 30, 50, 35, 40, 35, 50};
 }
