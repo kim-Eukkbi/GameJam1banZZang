@@ -55,17 +55,20 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (playerType.Equals(PizzaType.GREEN))
-                playerType = PizzaType.RED;
-            else
-                playerType = PizzaType.GREEN;
+            if(!GameManager.instance.isGameOver)
+            {
+                if (playerType.Equals(PizzaType.GREEN))
+                    playerType = PizzaType.RED;
+                else
+                    playerType = PizzaType.GREEN;
 
-            playerMesh.material = colorMat[(int)playerType];
+                playerMesh.material = colorMat[(int)playerType];
+            }
         }
 
 
-        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6 + playerRigidbody.velocity.y / 100);
-        if(Physics.Raycast(transform.position,Vector3.down,out hit, 6 + playerRigidbody.velocity.y / 100))
+        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6 + Valocity / 70);
+        if(Physics.Raycast(transform.position,Vector3.down,out hit, 6 + Valocity / 70))
         {
             if(hit.transform.GetComponent<Pizza>() != null)
             {

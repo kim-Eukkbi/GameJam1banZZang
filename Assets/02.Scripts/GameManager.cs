@@ -42,6 +42,7 @@ public class GameManager : MonoBehaviour
 
     public bool canMiss = true;
     public bool CanMerge = false;
+    public bool isGameOver = false;
 
     public bool isTest = true;
 
@@ -111,6 +112,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isGameOver = true;
         for (int i = 0; i < pizzaSpawner.plates.Count; i++)
         {
             if (pizzaSpawner.plates[i] != null)
@@ -140,17 +142,17 @@ public class GameManager : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         yield return new WaitForSeconds(4f);
-        for(int i = 0; i < destroyedPlate; i++)
+        cylinder.SetActive(false);
+        for (int i = 0; i < destroyedPlate; i++)
         {
             Instantiate(fragments, insPos, Quaternion.identity);
             yield return new WaitForSeconds(.05f);
         }
-        //cylinder.SetActive(false);
         yield return new WaitForSeconds(5f);
         CanMerge = true;
         //print(destroyedPlate *3);
-        sequence.Append(player.transform.DOScale(new Vector3(destroyedPlate * 3, destroyedPlate * 3, destroyedPlate * 3),.5f));
-       // sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate * 3, .5f));
+        sequence.Append(player.transform.DOScale(new Vector3(destroyedPlate * 3, destroyedPlate * 3, destroyedPlate * 3),2f));
+        sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate  * 1.5f, 2f));
         player.vCams[2].gameObject.SetActive(false);
         player.vCams[3].gameObject.SetActive(true);
     }
@@ -170,9 +172,9 @@ public class GameManager : MonoBehaviour
         //여기다가 V Cam 바꾸면 될듯;
     }
 
-    public void OnDrawGizmos()
+    /*public void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(player.transform.position, 300);
         Gizmos.color = Color.blue;
-    }
+    }*/
 }
