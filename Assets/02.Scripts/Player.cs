@@ -45,15 +45,15 @@ public class Player : MonoBehaviour
             speedTMP.transform.DOShakePosition(1, Valocity / 20).OnComplete(() => isShaking = false);
         }
         speedTMP.text = string.Format("{0:0}\n<size=50%>km/h</size>", Valocity);
-        float colorR = Mathf.Clamp(Valocity / 100, 0.17f,1);
-        float colorG = Mathf.Clamp(Valocity / 100, 0.19f,1);
-        float colorB = Mathf.Clamp(Valocity / 100, 0.43f,1);
+        float colorR = Mathf.Clamp(Valocity / 100, 0.17f, 1);
+        float colorG = Mathf.Clamp(Valocity / 100, 0.19f, 1);
+        float colorB = Mathf.Clamp(Valocity / 100, 0.43f, 1);
         speedTMP.color = new Color(colorR, colorG, colorB);
         speedTMP.fontSize = Valocity > 120 ? 500 : Valocity * 2f + 300;
         speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
-    
 
-        if(Input.GetKeyDown(KeyCode.R))
+
+        if (Input.GetKeyDown(KeyCode.R))
         {
             GameManager.instance.ReStart();
         }
@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(!GameManager.instance.isGameOver)
+            if (!GameManager.instance.isGameOver)
             {
                 if (playerType.Equals(PizzaType.GREEN))
                     playerType = PizzaType.RED;
@@ -74,36 +74,31 @@ public class Player : MonoBehaviour
 
 
         //Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6 + Valocity / 70);
-        if(Physics.Raycast(transform.position,Vector3.down,out hit, 6 + Valocity / 70))
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 6 + Valocity / 70))
         {
-            if(hit.transform.GetComponent<Pizza>() != null)
+            if (hit.transform.GetComponent<Pizza>() != null)
             {
                 if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
                 {
-                    if(!isDoubleChack)
+                    Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
+                    if(!currPlate.isChecking)
                     {
-                        Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
                         GameManager.instance.canMiss = true;
                         isDoubleChack = true;
                         StartCoroutine(DestroyList(currPlate));
-                        StartCoroutine(WaitDoubleChack());
+                        currPlate.isChecking = true;
                     }
+                   
                 }
                 else
                 {
                     GameManager.instance.MissPlate();
                     GameManager.instance.canMiss = false;
-                    isDoubleChack = false;
                 }
             }
         }
     }
 
-    private IEnumerator WaitDoubleChack()
-    {
-        yield return null;
-        isDoubleChack = false;
-    }
 
     private IEnumerator DestroyList(Plate plate)
     {
@@ -126,7 +121,7 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < plate.pizzas.Count; i++)
         {
-             plate.pizzas.RemoveAt(i);
+            plate.pizzas.RemoveAt(i);
         }
     }
 }

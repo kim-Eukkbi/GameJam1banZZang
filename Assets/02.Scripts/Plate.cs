@@ -11,6 +11,7 @@ public class Plate : MonoBehaviour
     private RotateDir rotateDir;
     [SerializeField]
     private float rotateSpeed = 1f;
+    public bool isChecking = false;
 
     private const int each = 45;
 
