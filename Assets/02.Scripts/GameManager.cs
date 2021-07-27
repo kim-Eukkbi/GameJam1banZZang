@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
 
         time = maxTime;
 
-        player.speedTMP.enabled = true;
+        player.speedTMP.gameObject.SetActive(true);
         cylinder.SetActive(true);
 
         inGameAudio.Stop();
