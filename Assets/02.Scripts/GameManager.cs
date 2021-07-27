@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     private TextMeshPro textTopScore;
     [SerializeField]
     private TextMeshPro textTopspeed;
+    public TextMeshPro textCombo;
 
     [SerializeField]
     private GameObject gameOverFloor;
@@ -116,6 +117,7 @@ public class GameManager : MonoBehaviour
         {
             textTimerViewer.TimerEnable(false);
             player.speedTMP.enabled = false;
+            textCombo.enabled = false;
             player.GetComponent<MeshRenderer>().enabled = false;
             player.GetComponent<Rigidbody>().isKinematic = true;
             cylinder.SetActive(false);
@@ -145,6 +147,7 @@ public class GameManager : MonoBehaviour
         textTimerViewer.StartTimer();
         textTimerViewer.TimerEnable(true);
         player.speedTMP.enabled = true;
+        textCombo.enabled = true;
         player.GetComponent<MeshRenderer>().enabled = true;
         player.GetComponent<Rigidbody>().isKinematic = false;
         cylinder.SetActive(true);
@@ -188,6 +191,7 @@ public class GameManager : MonoBehaviour
         time = maxTime;
 
         player.speedTMP.gameObject.SetActive(true);
+        textCombo.gameObject.SetActive(true);
 
         cylinder.SetActive(true);
 
@@ -226,6 +230,7 @@ public class GameManager : MonoBehaviour
         }
 
         player.speedTMP.gameObject.SetActive(false);
+        textCombo.gameObject.SetActive(false);
 
         Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y - 500, player.transform.position.z);
         Vector3 pos2 = new Vector3(player.transform.position.x + 12.5f, player.transform.position.y, player.transform.position.z);

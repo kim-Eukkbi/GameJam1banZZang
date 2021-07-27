@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
             {
                 GameManager.instance.canCheck = true;
 
-                if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
+                if(GameManager.instance.combo % 4 == 0 && GameManager.instance.combo != 0)
                 {
                     Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
                     if(!currPlate.isChecking)
@@ -90,15 +90,31 @@ public class Player : MonoBehaviour
 
                         GameManager.instance.combo++;
                     }
-                   
                 }
                 else
                 {
-                    GameManager.instance.MissPlate();
-                    GameManager.instance.canMiss = false;
+                    if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
+                    {
+                        Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
+                        if(!currPlate.isChecking)
+                        {
+                            GameManager.instance.canMiss = true;
+                            isDoubleChack = true;
+                            StartCoroutine(DestroyList(currPlate));
+                            currPlate.isChecking = true;
 
-                    GameManager.instance.combo = 0;
+                            GameManager.instance.combo++;
+                        }
+                    }
+                    else
+                    {
+                        GameManager.instance.MissPlate();
+                        GameManager.instance.canMiss = false;
+
+                        GameManager.instance.combo = 0;
+                    }
                 }
+                GameManager.instance.textCombo.text = GameManager.instance.combo + "\n<size=200>combo</size>";
             }
         }
     }
