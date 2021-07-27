@@ -8,6 +8,7 @@ using System.Linq;
 using DG.Tweening;
 using Cinemachine;
 using TMPro;
+using System.Security.Cryptography;
 
 public class GameManager : MonoBehaviour
 {
@@ -46,6 +47,9 @@ public class GameManager : MonoBehaviour
     private Vector3 playerOriginScale;
 
     private GameObject floor;
+    private List<GameObject> fragmentList = new List<GameObject>();
+
+    private Sequence sequence;
 
     private int maxTime = 60;
     public int time = 60;
@@ -56,8 +60,6 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
 
     public bool isTest = true;
-
-    private Coroutine co;
 
     private void Awake()
     {
@@ -125,22 +127,21 @@ public class GameManager : MonoBehaviour
 
     public void ReStart()
     {
-        if (co != null)
-        {
-            StopCoroutine(co);
-        }
+        StopAllCoroutines();
 
-        if (textTimerViewer.camCo != null)
-        {
-            StopCoroutine(textTimerViewer.camCo);
-        }
+        sequence.Kill();
+        DOTween.KillAll();
 
-        if (floor != null)
+        if(floor != null)
         {
             Destroy(floor);
         }
 
-        DOTween.KillAll();
+        for (int i = 0; i < fragmentList.Count; i++)
+        {
+            Destroy(fragmentList[i]);
+            fragmentList.RemoveAt(i);
+        }
 
         isGameOver = false;
 
@@ -192,18 +193,19 @@ public class GameManager : MonoBehaviour
 
         floor = Instantiate(gameOverFloor, pos, Quaternion.identity);
 
-        co = StartCoroutine(FragmentsMove(pos2));
+        StartCoroutine(FragmentsMove(pos2));
     }
 
 
 
     public IEnumerator FragmentsMove(Vector3 insPos)
     {
-        Sequence sequence = DOTween.Sequence();
+        sequence = DOTween.Sequence();
         yield return new WaitForSeconds(4f);
         for (int i = 0; i < destroyedPlate; i++)
         {
-            Instantiate(fragments, insPos, Quaternion.identity);
+            GameObject temp = Instantiate(fragments, insPos, Quaternion.identity);
+            fragmentList.Add(temp);
             yield return new WaitForSeconds(.05f);
         }
         yield return new WaitForSeconds(5f);

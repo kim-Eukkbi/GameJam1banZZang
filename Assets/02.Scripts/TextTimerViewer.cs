@@ -13,9 +13,6 @@ public class TextTimerViewer : MonoBehaviour
     private Text textTimer;
     private Text textTime;
 
-    private Coroutine co;
-    public Coroutine camCo;
-
     void Start()
     {
         textTime = GetComponent<Text>();
@@ -30,7 +27,7 @@ public class TextTimerViewer : MonoBehaviour
 
         if (time <= 2)
         {
-            camCo = StartCoroutine(GameManager.instance.CamaraMove());
+            StartCoroutine(GameManager.instance.CamaraMove());
         }
 
         if (time <= 0)
@@ -58,15 +55,10 @@ public class TextTimerViewer : MonoBehaviour
 
     public void StartTimer()
     {
-        if(co != null)
-        {
-            StopCoroutine(co);
-        }
-
         textAnimTimeText.color = Color.white;
         textTime.color = Color.white;
 
-        co = StartCoroutine(UpdateTimerRoutine());
+        StartCoroutine(UpdateTimerRoutine());
     }
 
     public void TimerEnable(bool enable)
