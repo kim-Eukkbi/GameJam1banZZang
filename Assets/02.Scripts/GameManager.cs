@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     private int maxTime = 60;
     public int time = 60;
     public int destroyedPlate = 0;
+    public int combo = 0;
 
     public bool canMiss = true;
     public bool CanMerge = false;

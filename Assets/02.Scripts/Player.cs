@@ -87,6 +87,8 @@ public class Player : MonoBehaviour
                         isDoubleChack = true;
                         StartCoroutine(DestroyList(currPlate));
                         currPlate.isChecking = true;
+
+                        GameManager.instance.combo++;
                     }
                    
                 }
@@ -94,6 +96,8 @@ public class Player : MonoBehaviour
                 {
                     GameManager.instance.MissPlate();
                     GameManager.instance.canMiss = false;
+
+                    GameManager.instance.combo = 0;
                 }
             }
         }
