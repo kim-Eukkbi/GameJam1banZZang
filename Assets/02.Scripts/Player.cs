@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
     {
         float Valocity = Mathf.Abs(playerRigidbody.velocity.y);
 
+        if (GameManager.instance.topSpeed < Valocity)
+        {
+            GameManager.instance.topSpeed = (int)Valocity;
+        }
+
         if (!isShaking)
         {
             isShaking = true;
@@ -71,6 +76,8 @@ public class Player : MonoBehaviour
         {
             if (hit.transform.GetComponent<Pizza>() != null)
             {
+                GameManager.instance.canCheck = true;
+
                 if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
                 {
                     Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
@@ -80,6 +87,8 @@ public class Player : MonoBehaviour
                         isDoubleChack = true;
                         StartCoroutine(DestroyList(currPlate));
                         currPlate.isChecking = true;
+
+                        GameManager.instance.combo++;
                     }
                    
                 }
@@ -87,6 +96,8 @@ public class Player : MonoBehaviour
                 {
                     GameManager.instance.MissPlate();
                     GameManager.instance.canMiss = false;
+
+                    GameManager.instance.combo = 0;
                 }
             }
         }
