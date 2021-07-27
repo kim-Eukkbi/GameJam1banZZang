@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
-using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -18,8 +17,6 @@ public class GameManager : MonoBehaviour
     private Text textScore;
     [SerializeField]
     private PizzaSpawner pizzaSpawner;
-    [SerializeField]
-    private Text textAnimTimerText;
 
     [SerializeField]
     private GameObject gameOverFloor;
@@ -61,16 +58,7 @@ public class GameManager : MonoBehaviour
         }
 
         textTimerViewer.UpdateTimer(time);
-
-        if (time <= 10) textAnimTimerText.color = Color.red;
-        textAnimTimerText.text = time.ToString();
-
-        textAnimTimerText.gameObject.SetActive(true);
-        textAnimTimerText.gameObject.GetComponent<RectTransform>().DOScale(1.5f, 1f).OnComplete(() =>
-        {
-            textAnimTimerText.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
-            textAnimTimerText.gameObject.SetActive(false);
-        });
+        textTimerViewer.MissTimer();
     }
 
     public void GameOver()
@@ -119,7 +107,7 @@ public class GameManager : MonoBehaviour
 
         textScore.text = string.Concat("SCORE\n", destroyedPlate * 300);
 
-        textTimerViewer.gameObject.SetActive(false);
+        textTimerViewer.TimerEnable(false);
         textScore.gameObject.SetActive(true);
         //여기다가 V Cam 바꾸면 될듯;
     }

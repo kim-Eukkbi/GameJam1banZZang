@@ -3,30 +3,57 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class TextTimerViewer : MonoBehaviour
 {
-    private Text timer;
+    [SerializeField]
+    private Text textAnimTimeText;
+    [SerializeField]
+    private Text textTimer;
+    private Text textTime;
 
     void Start()
     {
-        timer = GetComponent<Text>();
+        textTime = GetComponent<Text>();
 
         StartCoroutine(UpdateTimerRoutine());
     }
 
     public void UpdateTimer(int time)
     {
-        if (GameManager.instance.time <= 0)
+        if (time <= 0)
         {
             GameManager.instance.GameOver();
         }
-        else if (GameManager.instance.time <= 10)
+        else if (time <= 10)
         {
-            timer.color = Color.red;
+            textTime.color = Color.red;
         }
 
-        timer.text = string.Concat("<size=60>Time</size>\n", time.ToString());
+        textAnimTimeText.text = time.ToString();
+        textTime.text = time.ToString();
+    }
+
+    public void MissTimer()
+    {
+        if (GameManager.instance.time <= 10) textAnimTimeText.color = Color.red;
+
+        textTime.enabled = false;
+        textAnimTimeText.enabled = true;
+        textAnimTimeText.gameObject.GetComponent<RectTransform>().DOScale(1.5f, 1f).OnComplete(() =>
+        {
+            textAnimTimeText.gameObject.GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+            textAnimTimeText.enabled = false;
+            textTime.enabled = true;
+        });
+    }
+
+    public void TimerEnable(bool enable)
+    {
+        textTime.enabled = enable;
+        textAnimTimeText.enabled = enable;
+        textTimer.enabled = enable;
     }
 
     private IEnumerator UpdateTimerRoutine()
