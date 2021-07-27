@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private TextTimerViewer textTimerViewer;
     [SerializeField]
+    private Text scoreNum;
+    [SerializeField]
     private Text textScore;
     [SerializeField]
     private PizzaSpawner pizzaSpawner;
@@ -113,6 +115,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
+        cylinder.SetActive(false);
         for (int i = 0; i < pizzaSpawner.plates.Count; i++)
         {
             if (pizzaSpawner.plates[i] != null)
@@ -142,7 +145,6 @@ public class GameManager : MonoBehaviour
     {
         Sequence sequence = DOTween.Sequence();
         yield return new WaitForSeconds(4f);
-        cylinder.SetActive(false);
         for (int i = 0; i < destroyedPlate; i++)
         {
             Instantiate(fragments, insPos, Quaternion.identity);
@@ -154,6 +156,7 @@ public class GameManager : MonoBehaviour
         float scaleSize = Mathf.Clamp(destroyedPlate * 3, 3, 300);
         sequence.Append(player.transform.DOScale(new Vector3(scaleSize, scaleSize, scaleSize),2f));
         sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate  * 1.5f, 2f));
+        sequence.Append(scoreNum.DOCounter(0, destroyedPlate, 1f));
         player.vCams[2].gameObject.SetActive(false);
         player.vCams[3].gameObject.SetActive(true);
     }
@@ -165,8 +168,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(7f);
         player.vCams[1].gameObject.SetActive(false);
         player.vCams[2].gameObject.SetActive(true);
-
-        textScore.text = string.Concat("SCORE\n", destroyedPlate * 500);
 
         textTimerViewer.TimerEnable(false);
         textScore.gameObject.SetActive(true);
