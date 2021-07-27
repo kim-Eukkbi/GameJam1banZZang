@@ -16,8 +16,6 @@ public class TextTimerViewer : MonoBehaviour
     void Start()
     {
         textTime = GetComponent<Text>();
-
-        StartCoroutine(UpdateTimerRoutine());
     }
 
     public void UpdateTimer(int time)
