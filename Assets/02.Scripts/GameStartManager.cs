@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class GameStartManager : MonoBehaviour, IPointerClickHandler
+public class GameStartManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject panelStart;
@@ -28,12 +28,6 @@ public class GameStartManager : MonoBehaviour, IPointerClickHandler
             textStart.onClick.AddListener(GameStart);
             textExit.onClick.AddListener(GameEnd);
         }
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Debug.Log(eventData.clickCount);
-        Debug.Log(eventData.position);
     }
 
     public void GameStart()
