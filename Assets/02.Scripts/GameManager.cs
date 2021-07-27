@@ -9,6 +9,7 @@ using DG.Tweening;
 using Cinemachine;
 using TMPro;
 using System.Security.Cryptography;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     public Player player;
 
+    [SerializeField]
+    private DataManager dataManager;
     [SerializeField]
     private TextTimerViewer textTimerViewer;
     [SerializeField]
@@ -66,6 +69,10 @@ public class GameManager : MonoBehaviour
 
     public bool isTest = true;
 
+    [SerializeField]
+    public int topScore;
+    public int topSpeed;
+
     private void Awake()
     {
         if(instance == null)
@@ -76,10 +83,22 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        dataManager = GetComponent<DataManager>();
+        dataManager.path = Application.persistentDataPath + "/" + "Top.txt";
     }
 
     private void Start()
     {
+        if(!File.Exists(dataManager.path))
+        {
+            dataManager.SaveData(new GameDataVO(0, 0));
+        }
+
+        GameDataVO vo = dataManager.LoadData();
+
+        topScore = vo.highScore;
+
         if (isTest)
         {
             textTimerViewer.StartTimer();
@@ -205,6 +224,15 @@ public class GameManager : MonoBehaviour
         floor = Instantiate(gameOverFloor, pos, Quaternion.identity);
 
         StartCoroutine(FragmentsMove(pos2));
+
+        if(topScore < destroyedPlate)
+        {
+            topScore = destroyedPlate;
+        }
+
+        GameDataVO vo = new GameDataVO(topScore);
+
+        dataManager.SaveData(vo);
     }
 
 
