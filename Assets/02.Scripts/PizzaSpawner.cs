@@ -11,11 +11,17 @@ public class PizzaSpawner : MonoBehaviour
 
     public void SpawnPlate()
     {
-        PoolManager.CreatPool<Plate>(plate, gameObject.transform, 500);
+        for (int i = 0; i < plates.Count; i++)
+        {
+            if (plates[i] != null)
+            {
+                Destroy(plates[i].gameObject);
+            }
+        }
 
         for (int i = 0; i < 500; i++)
         {
-            Plate temp = PoolManager.GetItem<Plate>();
+            Plate temp = Instantiate(plate, transform).GetComponent<Plate>();
 
             temp.Setup();
 

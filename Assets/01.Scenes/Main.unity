@@ -793,6 +793,8 @@ MonoBehaviour:
   startAudio: {fileID: 716815984}
   inGameAudio: {fileID: 1658940368}
   minusTime: 2
+  playerOriginPos: {x: 0, y: 70, z: -17.21}
+  playerOriginScale: {x: 5, y: 5, z: 5}
   time: 60
   destroyedPlate: 0
   canMiss: 1

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using System.Linq;
 using DG.Tweening;
 using Cinemachine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -39,6 +40,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int minusTime = 2;
 
+    [SerializeField]
+    private Vector3 playerOriginPos;
+    [SerializeField]
+    private Vector3 playerOriginScale;
+
+    private GameObject floor;
+
+    private int maxTime = 60;
     public int time = 60;
     public int destroyedPlate = 0;
 
@@ -47,6 +56,8 @@ public class GameManager : MonoBehaviour
     public bool isGameOver = false;
 
     public bool isTest = true;
+
+    private Coroutine co;
 
     private void Awake()
     {
@@ -62,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if(isTest)
+        if (isTest)
         {
             textTimerViewer.StartTimer();
             pizzaSpawner.SpawnPlate();
@@ -112,10 +123,55 @@ public class GameManager : MonoBehaviour
         inGameAudio.Play();
     }
 
+    public void ReStart()
+    {
+        if (co != null)
+        {
+            StopCoroutine(co);
+        }
+
+        if (textTimerViewer.camCo != null)
+        {
+            StopCoroutine(textTimerViewer.camCo);
+        }
+
+        if (floor != null)
+        {
+            Destroy(floor);
+        }
+
+        DOTween.KillAll();
+
+        isGameOver = false;
+
+        player.vCams[3].gameObject.SetActive(false);
+        player.vCams[0].gameObject.SetActive(true);
+
+        player.transform.position = playerOriginPos;
+        player.transform.localScale = playerOriginScale;
+
+        time = maxTime;
+
+        player.speedTMP.enabled = true;
+        cylinder.SetActive(true);
+
+        inGameAudio.Stop();
+        inGameAudio.Play();
+
+        textTimerViewer.TimerEnable(true);
+        textScore.gameObject.SetActive(false);
+
+        textTimerViewer.StartTimer();
+        pizzaSpawner.SpawnPlate();
+
+        destroyedPlate = 0;
+    }
+
     public void GameOver()
     {
         isGameOver = true;
         cylinder.SetActive(false);
+
         for (int i = 0; i < pizzaSpawner.plates.Count; i++)
         {
             if (pizzaSpawner.plates[i] != null)
@@ -134,9 +190,9 @@ public class GameManager : MonoBehaviour
         Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y - 500, player.transform.position.z);
         Vector3 pos2 = new Vector3(player.transform.position.x + 12.5f, player.transform.position.y, player.transform.position.z);
 
-        Instantiate(gameOverFloor, pos, Quaternion.identity);
+        floor = Instantiate(gameOverFloor, pos, Quaternion.identity);
 
-        StartCoroutine(FragmentsMove(pos2));
+        co = StartCoroutine(FragmentsMove(pos2));
     }
 
 
