@@ -150,8 +150,9 @@ public class GameManager : MonoBehaviour
         }
         yield return new WaitForSeconds(5f);
         CanMerge = true;
-        //print(destroyedPlate *3);
-        sequence.Append(player.transform.DOScale(new Vector3(destroyedPlate * 3, destroyedPlate * 3, destroyedPlate * 3),2f));
+
+        float scaleSize = Mathf.Clamp(destroyedPlate * 3, 3, 300);
+        sequence.Append(player.transform.DOScale(new Vector3(scaleSize, scaleSize, scaleSize),2f));
         sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate  * 1.5f, 2f));
         player.vCams[2].gameObject.SetActive(false);
         player.vCams[3].gameObject.SetActive(true);
