@@ -78,10 +78,10 @@ public class Player : MonoBehaviour
             {
                 GameManager.instance.canCheck = true;
 
-                if(GameManager.instance.combo % 4 == 0 && GameManager.instance.combo != 0)
+                if (GameManager.instance.combo % 4 == 0 && GameManager.instance.combo != 0)
                 {
                     Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
-                    if(!currPlate.isChecking)
+                    if (!currPlate.isChecking)
                     {
                         GameManager.instance.canMiss = true;
                         isDoubleChack = true;
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
                     if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
                     {
                         Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
-                        if(!currPlate.isChecking)
+                        if (!currPlate.isChecking)
                         {
                             GameManager.instance.canMiss = true;
                             isDoubleChack = true;
@@ -117,31 +117,21 @@ public class Player : MonoBehaviour
                 GameManager.instance.textCombo.text = GameManager.instance.combo + "\n<size=200>combo</size>";
             }
         }
+
+        GameManager.instance.DestroyUpPlate();
     }
 
 
     private IEnumerator DestroyList(Plate plate)
     {
         GameManager.instance.DestroyPlate();
-
-
-        for (int i = 0; i < plate.pizzas.Count; i++)
-        {
-            Rigidbody rigidbody = plate.pizzas[i].transform.GetComponent<Rigidbody>();
-            rigidbody.isKinematic = false;
-            rigidbody.useGravity = true;
-            plate.pizzas[i].gameObject.layer = 7;
-            rigidbody.AddExplosionForce(100, transform.position, 10, 10, ForceMode.Impulse);
-            Destroy(plate.pizzas[i].gameObject, 1f);
-        }
-
+        plate.DestroyPizza();
 
         yield return new WaitForSeconds(1f);
 
-
-        for (int i = 0; i < plate.pizzas.Count; i++)
-        {
-            plate.pizzas.RemoveAt(i);
-        }
+        // for (int i = 0; i < plate.pizzas.Count; i++)
+        // {
+        //     plate.pizzas.RemoveAt(i);
+        // }
     }
 }

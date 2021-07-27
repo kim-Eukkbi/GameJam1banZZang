@@ -49,13 +49,32 @@ public class Plate : MonoBehaviour
 
     private void Update()
     {
-        if(rotateDir == RotateDir.LEFT)
+        if (rotateDir == RotateDir.LEFT)
         {
             transform.Rotate(new Vector3(0, -rotateSpeed * Time.deltaTime, 0));
         }
         else if (rotateDir == RotateDir.RIGHT)
         {
             transform.Rotate(new Vector3(0, rotateSpeed * Time.deltaTime, 0));
+        }
+    }
+
+    public void DestroyPizza()
+    {
+        for (int i = 0; i < pizzas.Count; i++)
+        {
+            if (pizzas[i] != null)
+            {
+                Rigidbody rigidbody = pizzas[i].transform.GetComponent<Rigidbody>();
+                rigidbody.isKinematic = false;
+                rigidbody.useGravity = true;
+                pizzas[i].gameObject.layer = 7;
+
+                Vector3 explosionPos = GameManager.instance.player.transform.position;
+
+                rigidbody.AddExplosionForce(100, explosionPos, 10, 10, ForceMode.Impulse);
+                Destroy(pizzas[i].gameObject, 1f);
+            }
         }
     }
 }

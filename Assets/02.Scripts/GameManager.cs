@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     private Vector3 playerOriginScale;
 
     private GameObject floor;
-   [SerializeField]
+    [SerializeField]
     private List<GameObject> fragmentList;
 
     private Sequence sequence;
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
         }
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if(!File.Exists(dataManager.path))
+        if (!File.Exists(dataManager.path))
         {
             dataManager.SaveData(new GameDataVO(0, 0));
         }
@@ -133,13 +133,28 @@ public class GameManager : MonoBehaviour
     {
         if (!canMiss) return;
 
-        if(!(time - minusTime <= 0))
+        if (!(time - minusTime <= 0))
         {
             time -= minusTime;
         }
 
         textTimerViewer.UpdateTimer(time);
         textTimerViewer.MissTimer();
+    }
+
+    public void DestroyUpPlate()
+    {
+        for (int i = 0; i < pizzaSpawner.plates.Count; i++)
+        {
+            if (pizzaSpawner.plates[i] != null)
+            {
+                if (pizzaSpawner.plates[i].transform.position.y > player.transform.position.y + 20)
+                {
+                    pizzaSpawner.plates[i].DestroyPizza();
+                }
+            }
+
+        }
     }
 
     public void GameStart()
@@ -164,7 +179,7 @@ public class GameManager : MonoBehaviour
         sequence.Kill();
         DOTween.KillAll();
 
-        if(floor != null)
+        if (floor != null)
         {
             Destroy(floor);
         }
@@ -186,7 +201,7 @@ public class GameManager : MonoBehaviour
 
         player.transform.position = playerOriginPos;
         player.transform.localScale = playerOriginScale;
-       
+
 
         time = maxTime;
 
@@ -239,7 +254,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(FragmentsMove(pos2));
 
-        if(topScore < destroyedPlate)
+        if (topScore < destroyedPlate)
         {
             topScore = destroyedPlate;
         }
@@ -248,8 +263,6 @@ public class GameManager : MonoBehaviour
 
         dataManager.SaveData(vo);
     }
-
-
 
     public IEnumerator FragmentsMove(Vector3 insPos)
     {
@@ -265,7 +278,7 @@ public class GameManager : MonoBehaviour
         CanMerge = true;
 
         float scaleSize = Mathf.Clamp(destroyedPlate * 3, 3, 150);
-        sequence.Append(player.transform.DOScale(new Vector3(scaleSize, scaleSize, scaleSize),2f));
+        sequence.Append(player.transform.DOScale(new Vector3(scaleSize, scaleSize, scaleSize), 2f));
         sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate, 2f));
         sequence.Append(scoreNum.DOCounter(0, destroyedPlate, 1f));
         player.vCams[2].gameObject.SetActive(false);
@@ -278,7 +291,7 @@ public class GameManager : MonoBehaviour
         topScore = vo.highScore;
         topSpeed = vo.highSpeed;
 
-        textTopScore.text = "Top Score\n\n<size=900>"+ topScore +"</size>\n<size=500>floor</size>";
+        textTopScore.text = "Top Score\n\n<size=900>" + topScore + "</size>\n<size=500>floor</size>";
         textTopspeed.text = "Top Speed\n\n<size=900>" + topSpeed + "</size>\n<size=500>km/h</size>";
 
         panelGameEnd.SetActive(true);
