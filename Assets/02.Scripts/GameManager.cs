@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     private Text textScore;
     [SerializeField]
     private PizzaSpawner pizzaSpawner;
+    [SerializeField]
+    private GameObject panelGameEnd;
+    [SerializeField]
+    private GameObject panelGameEndInvisible;
 
     [SerializeField]
     private GameObject gameOverFloor;
@@ -218,6 +222,11 @@ public class GameManager : MonoBehaviour
         sequence.Append(scoreNum.DOCounter(0, destroyedPlate, 1f));
         player.vCams[2].gameObject.SetActive(false);
         player.vCams[3].gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(3f);
+
+        panelGameEnd.SetActive(true);
+        panelGameEndInvisible.SetActive(true);
     }
 
     public IEnumerator CamaraMove()
@@ -230,7 +239,7 @@ public class GameManager : MonoBehaviour
 
         textTimerViewer.TimerEnable(false);
         textScore.gameObject.SetActive(true);
-        //¿©±â´Ù°¡ V Cam ¹Ù²Ù¸é µÉµí;
+        //ï¿½ï¿½ï¿½ï¿½Ù°ï¿½ V Cam ï¿½Ù²Ù¸ï¿½ ï¿½Éµï¿½;
     }
 
     /*public void OnDrawGizmos()
