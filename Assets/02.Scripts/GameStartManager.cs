@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class GameStartManager : MonoBehaviour
+public class GameStartManager : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private GameObject panelStart;
+    [SerializeField]
+    private GameObject panelStart2;
     [SerializeField]
     private Button textStart;
     [SerializeField]
@@ -18,20 +21,29 @@ public class GameStartManager : MonoBehaviour
         if(GameManager.instance.isTest)
         {
             panelStart.SetActive(false);
+            panelStart2.SetActive(false);
         }
         else
         {
-            textStart.onClick.AddListener(() =>
-            {
-                GameManager.instance.GameStart();
-                panelStart.SetActive(false);
-
-            });
+            textStart.onClick.AddListener(GameStart);
             textExit.onClick.AddListener(GameEnd);
         }
     }
 
-    private void GameEnd()
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Debug.Log(eventData.clickCount);
+        Debug.Log(eventData.position);
+    }
+
+    public void GameStart()
+    {
+        GameManager.instance.GameStart();
+        panelStart.SetActive(false);
+        panelStart2.SetActive(false);
+    }
+
+    public void GameEnd()
     {
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
