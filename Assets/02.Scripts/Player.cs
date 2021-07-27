@@ -73,7 +73,7 @@ public class Player : MonoBehaviour
         }
 
 
-        Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6 + Valocity / 70);
+        //Debug.DrawRay(transform.position, Vector3.down, Color.blue, 6 + Valocity / 70);
         if(Physics.Raycast(transform.position,Vector3.down,out hit, 6 + Valocity / 70))
         {
             if(hit.transform.GetComponent<Pizza>() != null)

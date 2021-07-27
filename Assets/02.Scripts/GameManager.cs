@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
 
     public Player player;
 
-    [SerializeField]
     private DataManager dataManager;
     [SerializeField]
     private TextTimerViewer textTimerViewer;
@@ -31,6 +30,10 @@ public class GameManager : MonoBehaviour
     private GameObject panelGameEnd;
     [SerializeField]
     private GameObject panelGameEndInvisible;
+    [SerializeField]
+    private TextMeshPro textTopScore;
+    [SerializeField]
+    private TextMeshPro textTopspeed;
 
     [SerializeField]
     private GameObject gameOverFloor;
@@ -192,6 +195,9 @@ public class GameManager : MonoBehaviour
         textTimerViewer.TimerEnable(true);
         textScore.gameObject.SetActive(false);
 
+        panelGameEnd.SetActive(false);
+        panelGameEndInvisible.SetActive(false);
+
         textTimerViewer.StartTimer();
         pizzaSpawner.SpawnPlate();
 
@@ -250,7 +256,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         CanMerge = true;
 
-        float scaleSize = Mathf.Clamp(destroyedPlate * 3, 3, 300);
+        float scaleSize = Mathf.Clamp(destroyedPlate * 3, 3, 150);
         sequence.Append(player.transform.DOScale(new Vector3(scaleSize, scaleSize, scaleSize),2f));
         sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate  * 1.5f, 2f));
         sequence.Append(scoreNum.DOCounter(0, destroyedPlate, 1f));
@@ -258,6 +264,13 @@ public class GameManager : MonoBehaviour
         player.vCams[3].gameObject.SetActive(true);
 
         yield return new WaitForSeconds(3f);
+
+        GameDataVO vo = dataManager.LoadData();
+
+        topScore = vo.highScore;
+        topSpeed = vo.highSpeed;
+
+        textTopScore.text = "Top Score\n\n<size=900>"+ topScore +"</size>\n<size=500>floor</size>";
 
         panelGameEnd.SetActive(true);
         panelGameEndInvisible.SetActive(true);
@@ -274,10 +287,4 @@ public class GameManager : MonoBehaviour
         textTimerViewer.TimerEnable(false);
         textScore.gameObject.SetActive(true);
     }
-
-    /*public void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(player.transform.position, 300);
-        Gizmos.color = Color.blue;
-    }*/
 }

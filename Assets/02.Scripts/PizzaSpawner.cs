@@ -19,7 +19,7 @@ public class PizzaSpawner : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < 500; i++)
+        for (int i = 0; i < 120; i++)
         {
             Plate temp = Instantiate(plate, transform).GetComponent<Plate>();
 
