@@ -24,8 +24,8 @@ public class FragmentMove : MonoBehaviour
                 Destroy(this.gameObject, 3);
             }
                 
-            transform.position = Vector3.Lerp(transform.position, GameManager.instance.player.transform.position, Time.deltaTime * (distance / 10));
-            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), Time.deltaTime * (distance / 10));
+            transform.position = Vector3.Lerp(transform.position, GameManager.instance.player.transform.position, Time.deltaTime * (distance / 100));
+            transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), Time.deltaTime * (distance / 100));
             gameObject.layer = 6;
 
             
