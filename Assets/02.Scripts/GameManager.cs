@@ -57,11 +57,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        textTimerViewer.TimerEnable(false);
+        /*textTimerViewer.TimerEnable(false);
         player.speedTMP.enabled = false;
         player.GetComponent<MeshRenderer>().enabled = false;
         player.GetComponent<Rigidbody>().isKinematic = true;
-        cylinder.SetActive(false);
+        cylinder.SetActive(false);*/
     }
 
     public static void DestroyPlate()
@@ -133,8 +133,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         CanMerge = true;
         print(10 + destroyedPlate / 5);
-        sequence.Append(player.transform.DOScale(new Vector3((10 + destroyedPlate) * 3, (10 + destroyedPlate) * 3, (10 + destroyedPlate) * 3),destroyedPlate / 50));
-        sequence.Join(player.transform.DOMoveY(player.transform.position.y + ((10 + destroyedPlate) * 3), destroyedPlate / 50));
+        sequence.Append(player.transform.DOScale(new Vector3(destroyedPlate * 3, destroyedPlate * 3, destroyedPlate * 3),destroyedPlate / 50));
+        sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate * 3, destroyedPlate / 50));
         yield return new WaitForSeconds(destroyedPlate / 50);
         //player.vCams[2].
     }
