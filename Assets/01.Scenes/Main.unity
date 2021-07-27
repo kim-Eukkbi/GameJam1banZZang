@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 40b58979fd5c35d4da248a0f3d2e9c22, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 40b58979fd5c35d4da248a0f3d2e9c22,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -787,8 +788,10 @@ MonoBehaviour:
   scoreNum: {fileID: 929191420}
   textScore: {fileID: 1487311685}
   pizzaSpawner: {fileID: 1960031615}
-  gameOverFloor: {fileID: 4846742967033033636, guid: 18d0baa0c3f51264b8ef0727595b2a1e, type: 3}
-  fragments: {fileID: 7529436606119599646, guid: 3ee05c066dada4546bf0ff6021e74302, type: 3}
+  gameOverFloor: {fileID: 4846742967033033636, guid: 18d0baa0c3f51264b8ef0727595b2a1e,
+    type: 3}
+  fragments: {fileID: 7529436606119599646, guid: 3ee05c066dada4546bf0ff6021e74302,
+    type: 3}
   cylinder: {fileID: 1541556660}
   startAudio: {fileID: 716815984}
   inGameAudio: {fileID: 1658940368}
@@ -955,7 +958,8 @@ MonoBehaviour:
   m_text: Km/h
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
-  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
+  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1892,8 +1896,10 @@ MonoBehaviour:
   _shutterAngle: 360
   _sampleCount: 60
   _frameBlending: 0.6
-  _reconstructionShader: {fileID: 4800000, guid: 60701d53f4c638048b5e49c197d08b77, type: 3}
-  _frameBlendingShader: {fileID: 4800000, guid: 95caa7c3844725840aec8dad64ac258e, type: 3}
+  _reconstructionShader: {fileID: 4800000, guid: 60701d53f4c638048b5e49c197d08b77,
+    type: 3}
+  _frameBlendingShader: {fileID: 4800000, guid: 95caa7c3844725840aec8dad64ac258e,
+    type: 3}
 --- !u!320 &963194231
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -2020,7 +2026,8 @@ MonoBehaviour:
     CRUSH</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
-  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
+  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2417,7 +2424,8 @@ MonoBehaviour:
   m_text: "200 \n<size=200>km/h</size>"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
-  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
+  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2820,7 +2828,8 @@ MonoBehaviour:
   m_text: Start
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
-  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
+  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3399,7 +3408,8 @@ MonoBehaviour:
   m_text: Exit
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
-  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23, type: 2}
+  m_sharedMaterial: {fileID: 1730107759554018057, guid: e2462199a1d193f49aa6c13426006c23,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
