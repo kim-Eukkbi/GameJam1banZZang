@@ -98,9 +98,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void DestroyPlate()
+    public void DestroyPlate()
     {
-        instance.destroyedPlate++;
+        destroyedPlate++;
     }
 
     public void MissPlate()
@@ -245,7 +245,6 @@ public class GameManager : MonoBehaviour
 
         textTimerViewer.TimerEnable(false);
         textScore.gameObject.SetActive(true);
-        //����ٰ� V Cam �ٲٸ� �ɵ�;
     }
 
     /*public void OnDrawGizmos()

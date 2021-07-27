@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private PizzaType playerType;
     public Vector3 tMPPos;
     private bool isShaking = false;
+    public bool isDoubleChack = false;
 
     void Start()
     {
@@ -79,23 +80,36 @@ public class Player : MonoBehaviour
             {
                 if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
                 {
-                    //print("Ãæµ¹");
-                    Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
-                    GameManager.DestroyPlate();
-                    GameManager.instance.canMiss = true;
-                    StartCoroutine(DestroyList(currPlate));
+                    if(!isDoubleChack)
+                    {
+                        Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
+                        GameManager.instance.canMiss = true;
+                        isDoubleChack = true;
+                        StartCoroutine(DestroyList(currPlate));
+                        StartCoroutine(WaitDoubleChack());
+                    }
                 }
                 else
                 {
                     GameManager.instance.MissPlate();
                     GameManager.instance.canMiss = false;
+                    isDoubleChack = false;
                 }
             }
         }
     }
 
+    private IEnumerator WaitDoubleChack()
+    {
+        yield return null;
+        isDoubleChack = false;
+    }
+
     private IEnumerator DestroyList(Plate plate)
     {
+        GameManager.instance.DestroyPlate();
+        Debug.LogError(GameManager.instance.destroyedPlate);
+
         for (int i = 0; i < plate.pizzas.Count; i++)
         {
             Rigidbody rigidbody = plate.pizzas[i].transform.GetComponent<Rigidbody>();

@@ -1002,7 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelStart: {fileID: 1394057310}
-  panelStartInvisible: {fileID: 0}
+  panelStartInvisible: {fileID: 2072703110}
   textStart: {fileID: 930392972}
   textExit: {fileID: 707406753}
 --- !u!1 &627111913
