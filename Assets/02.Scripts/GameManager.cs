@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
 
         player.transform.position = playerOriginPos;
         player.transform.localScale = playerOriginScale;
+        player.tMPPos = player.speedTMP.rectTransform.position;
 
         time = maxTime;
 

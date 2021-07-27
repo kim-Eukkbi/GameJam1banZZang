@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     public List<Material> colorMat;
     private RaycastHit hit;
     private PizzaType playerType;
-    private Vector3 tMPPos;
+    public Vector3 tMPPos;
     private bool isShaking = false;
 
     void Start()
