@@ -52,6 +52,11 @@ public class Player : MonoBehaviour
         speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
     
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            GameManager.instance.ReStart();
+        }
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -91,7 +96,6 @@ public class Player : MonoBehaviour
 
     private IEnumerator DestroyList(Plate plate)
     {
-
         for (int i = 0; i < plate.pizzas.Count; i++)
         {
             Rigidbody rigidbody = plate.pizzas[i].transform.GetComponent<Rigidbody>();
