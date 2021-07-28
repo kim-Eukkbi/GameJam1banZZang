@@ -907,7 +907,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 966b984039c4b004e85757cba743e770, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.643
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1128,7 +1128,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9520b3fcd52f7fb42bf021113c3c9bc3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.643
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1255,7 +1255,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0141996c722c3cd44b7fe7362bf54527, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.643
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1382,7 +1382,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9bda03260691b6c47882063f3232a9c8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.643
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1635,6 +1635,7 @@ MonoBehaviour:
   playerOriginPos: {x: 0, y: 70, z: -17.21}
   playerOriginScale: {x: 5, y: 5, z: 5}
   fragmentList: []
+  TimeOverText: {fileID: 1403732775}
   time: 60
   destroyedPlate: 0
   combo: 0
@@ -2006,7 +2007,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c396e96ba96fea745a59e7fb520fb2c6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.643
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3299,7 +3300,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4fbcd8143eccd7d41a9f89b8b1f99b51, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.643
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3556,7 +3557,7 @@ Transform:
   - {fileID: 524215017}
   - {fileID: 496133796}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1391559128
 GameObject:
@@ -3793,7 +3794,7 @@ RectTransform:
   m_GameObject: {fileID: 1403732771}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 1666035734}
   m_RootOrder: 2
@@ -3846,7 +3847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.98039216, g: 0.25490198, b: 0.25490198, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4512,7 +4513,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c0373aa0af526a3459197f7574fdc0a0, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.643
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4833,7 +4834,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0686c0e081cce484e970d191f80cb74f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.643
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> fragmentList;
 
+    public Text TimeOverText;
+
     private Sequence sequence;
 
     private int maxTime = 60;
@@ -250,11 +252,10 @@ public class GameManager : MonoBehaviour
             pizzaSpawner.plates.RemoveAt(i);
         }
 
-        player.speedTMP.gameObject.SetActive(false);
-        textCombo.gameObject.SetActive(false);
+        
 
-        Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y - 500, player.transform.position.z);
-        Vector3 pos2 = new Vector3(player.transform.position.x + 12.5f, player.transform.position.y, player.transform.position.z);
+        Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y - 150, player.transform.position.z);
+        Vector3 pos2 = new Vector3(player.transform.position.x + 12.5f, player.transform.position.y + 20f, player.transform.position.z);
 
         floor = Instantiate(gameOverFloor, pos, Quaternion.identity);
 
@@ -278,14 +279,14 @@ public class GameManager : MonoBehaviour
     public IEnumerator FragmentsMove(Vector3 insPos)
     {
         sequence = DOTween.Sequence();
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(3f);
         for (int i = 0; i < destroyedPlate; i++)
         {
             GameObject temp = Instantiate(fragments, insPos, Quaternion.identity);
             fragmentList.Add(temp);
             yield return new WaitForSeconds(.05f);
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
         CanMerge = true;
 
         float scaleSize = Mathf.Clamp(destroyedPlate * 3, 3, 150);
@@ -312,12 +313,16 @@ public class GameManager : MonoBehaviour
     public IEnumerator CamaraMove()
     {
         player.transform.GetComponent<Rigidbody>().isKinematic = true;
+        player.speedTMP.gameObject.SetActive(false);
+        textCombo.gameObject.SetActive(false);
+        TimeOverText.transform.DOScale(1, .5f);
         yield return new WaitForSeconds(2f);
+        TimeOverText.transform.DOScale(0, .5f);
         player.transform.GetComponent<Rigidbody>().isKinematic = false;
         GameOver();
 
 
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(4f);
         player.vCams[0].gameObject.SetActive(false);
         player.vCams[1].gameObject.SetActive(true);
 
