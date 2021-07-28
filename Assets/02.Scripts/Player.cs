@@ -57,10 +57,9 @@ public class Player : MonoBehaviour
         speedTMP.fontSize = Valocity > 120 ? 500 : Valocity * 2f + 300;
         //speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
 
-
         if (Input.GetMouseButtonDown(0))
         {
-            if (!GameManager.instance.isGameOver)
+            if (!GameManager.instance.canChangeColor)
             {
                 if (playerType.Equals(PizzaType.GREEN))
                     playerType = PizzaType.RED;
@@ -78,7 +77,7 @@ public class Player : MonoBehaviour
             {
                 GameManager.instance.canCheck = true;
 
-                if (GameManager.instance.combo % 4 == 0 && GameManager.instance.combo != 0)
+                if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
                 {
                     Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
                     if (!currPlate.isChecking)
@@ -93,27 +92,12 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    if (hit.transform.GetComponent<Pizza>().Type.Equals(playerType))
-                    {
-                        Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
-                        if (!currPlate.isChecking)
-                        {
-                            GameManager.instance.canMiss = true;
-                            isDoubleChack = true;
-                            StartCoroutine(DestroyList(currPlate));
-                            currPlate.isChecking = true;
+                    GameManager.instance.MissPlate();
+                    GameManager.instance.canMiss = false;
 
-                            GameManager.instance.combo++;
-                        }
-                    }
-                    else
-                    {
-                        GameManager.instance.MissPlate();
-                        GameManager.instance.canMiss = false;
-
-                        GameManager.instance.combo = 0;
-                    }
+                    GameManager.instance.combo = 0;
                 }
+
                 GameManager.instance.textCombo.text = GameManager.instance.combo + "\n<size=200>combo</size>";
             }
         }

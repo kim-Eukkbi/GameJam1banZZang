@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     public bool canMiss = true;
     public bool CanMerge = false;
-    public bool isGameOver = false;
+    public bool canChangeColor = false;
     public bool canCheck = false;
 
     public bool isTest = true;
@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
             {
                 if (pizzaSpawner.plates[i].transform.position.y > player.transform.position.y + 20)
                 {
-                    pizzaSpawner.plates[i].DestroyPizza();
+                    pizzaSpawner.plates[i].UpDestroyPizza();
                 }
             }
 
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
 
         fragmentList.Clear();
 
-        isGameOver = false;
+        canChangeColor = false;
         CanMerge = false;
 
         player.vCams[3].gameObject.SetActive(false);
@@ -224,11 +224,14 @@ public class GameManager : MonoBehaviour
         pizzaSpawner.SpawnPlate();
 
         destroyedPlate = 0;
+        combo = 0;
+
+        textCombo.text = GameManager.instance.combo + "\n<size=200>combo</size>";
     }
 
     public void GameOver()
     {
-        isGameOver = true;
+        canChangeColor = true;
         cylinder.SetActive(false);
 
         for (int i = 0; i < pizzaSpawner.plates.Count; i++)
