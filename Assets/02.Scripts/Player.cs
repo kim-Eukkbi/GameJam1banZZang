@@ -106,7 +106,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
-                    if (!currPlate.isMissed)
+                    if (!currPlate.isMissed && !currPlate.isChecking)
                     {
                         GameManager.instance.MissPlate();
                         hitAnimation.StartFade();
