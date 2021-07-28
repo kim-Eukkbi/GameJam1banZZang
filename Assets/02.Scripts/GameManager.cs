@@ -256,7 +256,7 @@ public class GameManager : MonoBehaviour
         
 
         Vector3 pos = new Vector3(player.transform.position.x, player.transform.position.y - 150, player.transform.position.z);
-        Vector3 pos2 = new Vector3(player.transform.position.x + 12.5f, player.transform.position.y + 20f, player.transform.position.z);
+        Vector3 pos2 = new Vector3(player.transform.position.x, player.transform.position.y + 150f, player.transform.position.z);
 
         floor = Instantiate(gameOverFloor, pos, Quaternion.identity);
 
