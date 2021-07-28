@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         }
 
         dataManager = GetComponent<DataManager>();
-        dataManager.path = Application.dataPath + "/09.Data/" + "Top.txt";
+        dataManager.path = Application.persistentDataPath + "/" + "Top.txt";
     }
 
     private void Start()
