@@ -238,7 +238,6 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        canChangeColor = true;
         cylinder.SetActive(false);
 
         for (int i = 0; i < pizzaSpawner.plates.Count; i++)
@@ -322,7 +321,10 @@ public class GameManager : MonoBehaviour
         player.speedTMP.gameObject.SetActive(false);
         textCombo.gameObject.SetActive(false);
         TimeOverText.transform.DOScale(1, .5f);
+        canChangeColor = true;
+
         yield return new WaitForSeconds(2f);
+
         TimeOverText.transform.DOScale(0, .5f);
         player.transform.GetComponent<Rigidbody>().isKinematic = false;
         GameOver();

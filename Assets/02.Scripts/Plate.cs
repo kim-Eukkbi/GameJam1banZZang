@@ -50,6 +50,10 @@ public class Plate : MonoBehaviour
 
     private void Update()
     {
+
+        if (GameManager.instance.canChangeColor)
+            return;
+
         if (rotateDir == RotateDir.LEFT)
         {
             transform.Rotate(new Vector3(0, -rotateSpeed * Time.deltaTime, 0));
