@@ -12,6 +12,7 @@ public class Plate : MonoBehaviour
     [SerializeField]
     private float rotateSpeed = 1f;
     public bool isChecking = false;
+    public bool isMissed = false;
 
     private const int each = 45;
 
