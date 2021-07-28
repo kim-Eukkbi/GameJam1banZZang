@@ -50,6 +50,9 @@ public class GameManager : MonoBehaviour
     private AudioSource inGameAudio;
 
     [SerializeField]
+    private AudioSource[] soundEffects;
+
+    [SerializeField]
     private int minusTime = 2;
 
     [SerializeField]
@@ -265,6 +268,11 @@ public class GameManager : MonoBehaviour
         GameDataVO vo = new GameDataVO(topScore, topSpeed);
 
         dataManager.SaveData(vo);
+    }
+
+    public void PlaySoundEffect()
+    {
+        soundEffects[combo].Play();
     }
 
     public IEnumerator FragmentsMove(Vector3 insPos)
