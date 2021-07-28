@@ -65,7 +65,7 @@ public class Player : MonoBehaviour
         GameManager.instance.textCombo.text = 
             string.Format("{0:0}\n<size=50%>combo</size>", GameManager.instance.combo);
         GameManager.instance.textCombo.fontSize = (Valocity > 120 ? 300 : Valocity * 2f);
-        GameManager.instance.textCombo.fontSize = Mathf.Clamp(GameManager.instance.textCombo.fontSize, 200, 300);
+        GameManager.instance.textCombo.fontSize = Mathf.Clamp(GameManager.instance.textCombo.fontSize, 150, 300);
 
         //speedTMP.rectTransform.position += new Vector3(0, -(Valocity / 500), Valocity / 300);
 
