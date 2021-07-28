@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
         canChangeColor = false;
         CanMerge = false;
 
-        player.vCams[3].gameObject.SetActive(false);
+        player.vCams[2].gameObject.SetActive(false);
         player.vCams[0].gameObject.SetActive(true);
 
         player.transform.position = playerOriginPos;
@@ -270,7 +270,7 @@ public class GameManager : MonoBehaviour
     public IEnumerator FragmentsMove(Vector3 insPos)
     {
         sequence = DOTween.Sequence();
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(6f);
         for (int i = 0; i < destroyedPlate; i++)
         {
             GameObject temp = Instantiate(fragments, insPos, Quaternion.identity);
@@ -284,8 +284,8 @@ public class GameManager : MonoBehaviour
         sequence.Append(player.transform.DOScale(new Vector3(scaleSize, scaleSize, scaleSize), 2f));
         sequence.Join(player.transform.DOMoveY(player.transform.position.y + destroyedPlate, 2f));
         sequence.Append(scoreNum.DOCounter(0, destroyedPlate, 1f));
-        player.vCams[2].gameObject.SetActive(false);
-        player.vCams[3].gameObject.SetActive(true);
+        player.vCams[1].gameObject.SetActive(false);
+        player.vCams[2].gameObject.SetActive(true);
 
         yield return new WaitForSeconds(3f);
 
@@ -303,11 +303,15 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator CamaraMove()
     {
+        player.transform.GetComponent<Rigidbody>().isKinematic = true;
+        yield return new WaitForSeconds(2f);
+        player.transform.GetComponent<Rigidbody>().isKinematic = false;
+        GameOver();
+
+
+        yield return new WaitForSeconds(7f);
         player.vCams[0].gameObject.SetActive(false);
         player.vCams[1].gameObject.SetActive(true);
-        yield return new WaitForSeconds(7f);
-        player.vCams[1].gameObject.SetActive(false);
-        player.vCams[2].gameObject.SetActive(true);
 
         textTimerViewer.TimerEnable(false);
         textScore.gameObject.SetActive(true);

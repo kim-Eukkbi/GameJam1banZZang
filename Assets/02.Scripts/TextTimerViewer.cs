@@ -25,14 +25,9 @@ public class TextTimerViewer : MonoBehaviour
             textTime.color = Color.red;
         }
 
-        if (time <= 2)
-        {
-            StartCoroutine(GameManager.instance.CamaraMove());
-        }
-
         if (time <= 0)
         {
-            GameManager.instance.GameOver();
+            StartCoroutine(GameManager.instance.CamaraMove());
         }
 
         textAnimTimeText.text = time.ToString();
