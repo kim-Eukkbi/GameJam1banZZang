@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     private TrailRenderer playerTrail;
     private Rigidbody playerRigidbody;
     private ConstantForce playerConstantForce;
+    [SerializeField]
+    private HitAnimation hitAnimation;
 
     public TextMeshPro speedTMP;
     public List<CinemachineVirtualCamera> vCams;
@@ -91,7 +93,6 @@ public class Player : MonoBehaviour
                     Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
                     if (!currPlate.isChecking)
                     {
-                        GameManager.instance.canMiss = true;
                         isDoubleChack = true;
                         StartCoroutine(DestroyList(currPlate));
                         currPlate.isChecking = true;
@@ -101,10 +102,15 @@ public class Player : MonoBehaviour
                 }
                 else
                 {
-                    GameManager.instance.MissPlate();
-                    GameManager.instance.canMiss = false;
+                    Plate currPlate = hit.transform.gameObject.GetComponentInParent<Plate>();
+                    if (!currPlate.isMissed)
+                    {
+                        GameManager.instance.MissPlate();
+                        hitAnimation.StartFade();
+                        currPlate.isMissed = true;
 
-                    GameManager.instance.combo = 0;
+                        GameManager.instance.combo = 0;
+                    }
                 }
 
                 GameManager.instance.textCombo.text = GameManager.instance.combo + "\n<size=200>combo</size>";
