@@ -112,6 +112,7 @@ public class Player : MonoBehaviour
                         hitAnimation.StartFade();
                         currPlate.isMissed = true;
 
+                        GameManager.instance.PlayMissSound();
                         GameManager.instance.combo = 0;
                     }
                 }

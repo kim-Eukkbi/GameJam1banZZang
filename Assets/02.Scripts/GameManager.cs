@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private AudioSource[] soundEffects;
+    [SerializeField]
+    private AudioSource missSound;
 
     [SerializeField]
     private int minusTime = 2;
@@ -273,9 +275,13 @@ public class GameManager : MonoBehaviour
 
     public void PlaySoundEffect()
     {
-        soundEffects[combo].Play();
+        soundEffects[combo % 8].Play();
     }
 
+    public void PlayMissSound()
+    {
+        missSound.Play();
+    }
     public IEnumerator FragmentsMove(Vector3 insPos)
     {
         sequence = DOTween.Sequence();
