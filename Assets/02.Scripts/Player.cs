@@ -98,6 +98,7 @@ public class Player : MonoBehaviour
                         StartCoroutine(DestroyList(currPlate));
                         currPlate.isChecking = true;
 
+                        GameManager.instance.PlaySoundEffect();
                         GameManager.instance.combo++;
                         GameManager.instance.textCombo.transform.DOShakePosition(1, 5f);
                     }
